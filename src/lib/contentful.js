@@ -1,5 +1,11 @@
 import { createClient } from "contentful";
 
+if (!process.env.CONTENTFUL_SPACE_ID || !process.env.CONTENTFUL_ACCESS_TOKEN) {
+    throw new Error(
+        "❌ Missing Contentful ENV variables. Please set CONTENTFUL_SPACE_ID and CONTENTFUL_ACCESS_TOKEN"
+    );
+}
+
 const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID,
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
@@ -19,4 +25,3 @@ export async function getFaqs() {
     const res = await client.getEntries({ content_type: "faq" });
     return res.items;
 }
-
