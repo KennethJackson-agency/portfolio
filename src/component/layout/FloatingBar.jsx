@@ -12,6 +12,13 @@ const navItems = [
     { label: "Contact", href: "/contact" },
 ];
 
+const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+    }
+};
+
 function FloatingBar() {
     const [isOpen, setIsOpen] = useState(false);
     const [active, setActive] = useState(false);
@@ -129,13 +136,15 @@ function FloatingBar() {
                         : "translate-x-full opacity-0 pointer-events-none"
                 }`}
             >
-                <div className="space-y-3">
-                    <p>About</p>
-                    <p>Work</p>
-                    <p>Portfolio</p>
-                    <Link href="/contact" onClick={() => setIsOpen(false)}>
-                        Contact
-                    </Link>
+                <div className="flex flex-col items-end space-y-3">
+                    {navItems.map((item, i) => (
+                        <button
+                            key={i}
+                            onClick={() => scrollToSection(item.id)}
+                        >
+                            <span>{item.label}</span>
+                        </button>
+                    ))}
                 </div>
             </nav>
         </div>
