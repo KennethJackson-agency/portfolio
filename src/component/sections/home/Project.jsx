@@ -8,8 +8,8 @@ export default async function Project() {
     const projects = await getProjects();
 
     return (
-        <section id="work" className="max-w-min mx-auto">
-            <div className="columns-1 md:columns-2 gap-x-20 md:gap-x-10 lg:gap-x-20 space-y-20">
+        <section id="work" className="relative max-w-min mx-auto">
+            <div className="columns-1 md:columns-2 gap-x-20 md:gap-x-10 lg:gap-x-32 space-y-20">
                 {projects.map((project) => (
                     <div
                         key={project.sys.id}
@@ -35,7 +35,7 @@ export default async function Project() {
                             />
                         </Frame>
 
-                        <div className="flex flex-col gap-4 w-[300px] sm:w-[450px] md:w-[350px] lg:w-[450px]">
+                        <div className="flex flex-col gap-4 w-[300px] sm:w-[450px] md:w-[350px] lg:w-[400px]">
                             <p className="text-3xl font-semibold">
                                 {project.fields.projectName}
                             </p>

@@ -2,8 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect } from "react";
+import {
+    motion,
+    useMotionValue,
+    useMotionTemplate,
+    animate,
+} from "framer-motion";
 import arrowRightIcon from "../../../app/icon/arrow-right.svg";
 
 export default function FooterClient({ abouts }) {
@@ -20,7 +25,6 @@ export default function FooterClient({ abouts }) {
         }
     };
 
-    // Variants for stagger animation
     const containerVariant = {
         hidden: {},
         visible: {
@@ -31,19 +35,36 @@ export default function FooterClient({ abouts }) {
     };
 
     const itemVariant = {
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0, y: 40 },
         visible: { opacity: 1, y: 0 },
     };
 
+    // 🌈 Setup aurora animation
+    const COLORS_TOP = ["#FFE2E2", "#FFD6A8", "#FEF3C6", "#FEF9C2", "#ECFCCA", "#DCFCE7", "#D0FAE5", "#CBFBF1", "#CEFAFE", "#DBEAFE", "#E0E7FF", "#FAE8FF", "#FCE7F3"];
+    const color = useMotionValue(COLORS_TOP[0]);
+
+    useEffect(() => {
+        animate(color, COLORS_TOP, {
+            ease: "easeInOut",
+            duration: 10,
+            repeat: Infinity,
+            repeatType: "mirror",
+        });
+    }, []);
+
+    const backgroundImage = useMotionTemplate`radial-gradient(125% 125% at 50% 0%, #fff 50%, ${color})`;
+
     return (
         <motion.div
-            className="relative"
+            className="relative overflow-hidden text-zinc-900"
+            style={{ backgroundImage }}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
         >
-            <div className="flex flex-col items-center gap-5 px-5 md:px-0 mt-72 mb-40 z-10">
-                {/* Navigation Links with animation */}
+
+            {/* 🔥 Footer content */}
+            <div className="relative z-10 flex flex-col items-center gap-5 px-5 md:px-0 mt-72 mb-40">
                 <motion.nav
                     variants={containerVariant}
                     className="flex flex-col xs:flex-row items-center gap-5 sm:gap-10 font-medium whitespace-nowrap"
@@ -53,7 +74,7 @@ export default function FooterClient({ abouts }) {
                             variants={itemVariant}
                             key={i}
                             onClick={() => scrollToSection(item.id)}
-                            className="group flex items-center gap-2 text-zinc-900 hover:text-zinc-600 transition-colors"
+                            className="group flex items-center gap-2 text-zinc-900 hover:text-zinc-300 transition-colors cursor-pointer"
                         >
                             <span>{item.label}</span>
                             <Image
@@ -68,7 +89,7 @@ export default function FooterClient({ abouts }) {
                 </motion.nav>
 
                 <motion.p
-                    className="text-zinc-800 text-xl font-semibold text-center"
+                    className="text-zinc-900 text-xl font-semibold text-center"
                     variants={itemVariant}
                 >
                     Still scrolling? That’s a sign.
@@ -83,14 +104,16 @@ export default function FooterClient({ abouts }) {
                     a noisy digital world.
                 </motion.p>
 
-                {/* Social Media Icons with animation */}
                 <motion.div
                     className="flex items-center gap-6 mt-10"
                     variants={containerVariant}
                 >
                     {abouts?.flatMap((about) =>
                         about.fields.socialMedia.map((socmed, j) => (
-                            <motion.div key={`${about.sys.id}-${j}`} variants={itemVariant}>
+                            <motion.div
+                                key={`${about.sys.id}-${j}`}
+                                variants={itemVariant}
+                            >
                                 <Link
                                     href={socmed.fields.link}
                                     target="_blank"

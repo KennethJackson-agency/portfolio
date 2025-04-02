@@ -21,29 +21,31 @@ function Header() {
         <section className="relative">
             <div className="backgroundHeader"></div>
 
-            <motion.header
-                className="flex flex-col gap-3 sm:gap-5 md:gap-8 w-full sm:w-[550px] md:w-[750px] px-3 mx-auto text-center mt-[200px] md:mt-[250px] text-zinc-900"
-            >
+            <motion.header className="flex flex-col gap-10 sm:gap-5 md:gap-8 w-full sm:w-[550px] md:w-[750px] px-3 mx-auto text-center mt-[200px] md:mt-[250px] text-zinc-900">
                 {/* Animated Text Header */}
-                <h1 className="font-semibold text-3xl sm:text-4xl md:text-5xl">
-                    {animateWords("Amplify Your Impact")}
-                </h1>
+                <div className="flex flex-col gap-3 sm:gap-5 md:gap-8">
+                    <div className="flex flex-col gap-1 md:gap-8">
+                        <h1 className="font-semibold text-3xl sm:text-4xl md:text-5xl">
+                            {animateWords("Amplify Your Impact")}
+                        </h1>
 
-                <h2 className="font-semibold text-3xl sm:text-4xl md:text-5xl leading-10">
-                    {animateWords("Transform Your Brand Today", 0.1)}
-                </h2>
+                        <h2 className="font-semibold text-3xl sm:text-4xl md:text-5xl leading-10">
+                            {animateWords("Transform Your Brand Today", 0.1)}
+                        </h2>
+                    </div>
 
-                <p>
-                    We're the powerhouse behind your digital presence 🚀,
-                    specializing in seamless IT integration 💻, vibrant video
-                    production 🎬, irresistible copy ✍️, and impactful digital
-                    marketing 📈. Propel your brand forward.✨
-                </p>
+                    <p>
+                        We're the powerhouse behind your digital presence 🚀,
+                        specializing in seamless IT integration 💻, vibrant
+                        video production 🎬, irresistible copy ✍️, and impactful
+                        digital marketing 📈. Propel your brand forward.✨
+                    </p>
+                </div>
 
                 <div className="tooltip-wrapper relative inline-block mx-auto duration-300">
                     <button
                         aria-label="Collaborate with us"
-                        className="collab-button bg-zinc-900 text-white text-sm rounded-full px-5 py-3 text-center cursor-pointer inline-block drop-shadow-xl"
+                        className="collab-button bg-zinc-900 text-white text-sm rounded-full px-10 py-3.5 text-center cursor-pointer inline-block drop-shadow-xl"
                     >
                         Let's Collaborate 🤝
                     </button>

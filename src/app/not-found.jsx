@@ -31,7 +31,12 @@ export default function NotFound() {
             {/* 🔥 404 — Bisa di drag & Jatuh saat klik 3x */}
             <motion.h1
                 drag
-                dragConstraints={{ top: -300, bottom: 300, left: -300, right: 300 }}
+                dragConstraints={{
+                    top: -300,
+                    bottom: 300,
+                    left: -300,
+                    right: 300,
+                }}
                 className="text-6xl font-bold cursor-pointer select-none"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -44,7 +49,12 @@ export default function NotFound() {
             {/* Subtext */}
             <motion.p
                 drag
-                dragConstraints={{ top: -300, bottom: 300, left: -300, right: 300 }}
+                dragConstraints={{
+                    top: -300,
+                    bottom: 300,
+                    left: -300,
+                    right: 300,
+                }}
                 className="text-pink-500 font-semibold mt-2 cursor-grab active:cursor-grabbing select-none"
                 whileHover={{ scale: 1.1 }}
             >
@@ -53,17 +63,28 @@ export default function NotFound() {
 
             <motion.p
                 drag
-                dragConstraints={{ top: -300, bottom: 300, left: -300, right: 300 }}
+                dragConstraints={{
+                    top: -300,
+                    bottom: 300,
+                    left: -300,
+                    right: 300,
+                }}
                 className="text-zinc-500 mt-2 max-w-md cursor-grab active:cursor-grabbing select-none"
                 whileHover={{ scale: 1.05 }}
             >
-                The link you clicked is either outdated, broken, or never existed.
+                The link you clicked is either outdated, broken, or never
+                existed.
             </motion.p>
 
             {/* Button */}
             <motion.div
                 drag
-                dragConstraints={{ top: -300, bottom: 300, left: -300, right: 300 }}
+                dragConstraints={{
+                    top: -300,
+                    bottom: 300,
+                    left: -300,
+                    right: 300,
+                }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 className="mt-6 cursor-grab active:cursor-grabbing"

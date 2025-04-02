@@ -25,3 +25,8 @@ export async function getFaqs() {
     const res = await client.getEntries({ content_type: "faq" });
     return res.items;
 }
+
+export async function getServices() {
+    const res = await client.getEntries({ content_type: "service" });
+    return res.items;
+}
