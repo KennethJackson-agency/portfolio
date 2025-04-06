@@ -41,14 +41,14 @@ export default function FaviconAnimator() {
             requestAnimationFrame(updateFavicon);
         };
 
-        image.onload = () => {
-            console.log("✅ Favicon image loaded");
-            updateFavicon();
-        };
+        // image.onload = () => {
+        //     console.log("✅ Favicon image loaded");
+        //     updateFavicon();
+        // };
 
-        image.onerror = () => {
-            console.error("❌ Failed to load favicon image");
-        };
+        // image.onerror = () => {
+        //     console.error("❌ Failed to load favicon image");
+        // };
     }, []);
 
     return null;
