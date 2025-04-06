@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
-export const splitWords = (text, delay = 0.15) => {
-    return text.split(" ").map((word, i) => (
+export const animateWords = (text, delay = 0.2) =>
+    text.split(" ").map((word, i) => (
         <motion.span
             key={i}
             className="inline-block"
@@ -12,4 +12,3 @@ export const splitWords = (text, delay = 0.15) => {
             {word}&nbsp;
         </motion.span>
     ));
-};

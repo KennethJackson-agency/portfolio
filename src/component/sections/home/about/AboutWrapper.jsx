@@ -1,24 +1,13 @@
 import Accordion from "@/component/common/Accordion";
-import { getAbouts } from "@/lib/contentful";
 import Image from "next/image";
 import React from "react";
-import logo from "../../../app/icon/white-black-logo.svg";
-import sendIcon from "../../../app/icon/send.svg";
+import logo from "../../../../app/icon/white-black-logo.svg";
+import sendIcon from "../../../../app/icon/send.svg";
 import TypingText from "@/component/animations/TypingText";
 
-export default async function About() {
-    const abouts = await getAbouts();
-
-    const typingVariants = [
-        "Looking for ideas...",
-        "Polishing pixels...",
-        "Shaping the future...",
-        "Brewing some code ☕",
-        "Designing something cool!",
-    ];
-
+export default async function AboutWrapper({ abouts }) {
     return (
-        <div id="about" className="mx-auto">
+        <section id="about" className="mx-auto">
             {abouts.map((about, i) => (
                 <Accordion
                     key={i}
@@ -157,6 +146,6 @@ export default async function About() {
                     </div>
                 </Accordion>
             ))}
-        </div>
+        </section>
     );
 }

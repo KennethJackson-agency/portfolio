@@ -1,12 +1,9 @@
 import Frame from "@/component/common/Frame";
 import { formatMonthYear } from "@/component/helper/formatMonthYear";
-import { getProjects } from "@/lib/contentful";
 import Image from "next/image";
 import React from "react";
 
-export default async function Project() {
-    const projects = await getProjects();
-
+export default async function Project({ projects }) {
     return (
         <section id="work" className="relative max-w-min mx-auto">
             <div className="columns-1 md:columns-2 gap-x-20 md:gap-x-10 lg:gap-x-32 space-y-20">

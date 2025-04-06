@@ -30,3 +30,8 @@ export async function getServices() {
     const res = await client.getEntries({ content_type: "service" });
     return res.items;
 }
+
+export async function getStats() {
+    const res = await client.getEntries({ content_type: "stats" });
+    return res.items;
+}

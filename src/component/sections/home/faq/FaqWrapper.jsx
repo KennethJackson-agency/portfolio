@@ -1,21 +1,21 @@
 import Accordion from "@/component/common/Accordion";
-import { getFaqs } from "@/lib/contentful";
 import React from "react";
-import logo from "../../../app/icon/white-black-logo.svg";
+import logo from "../../../../app/icon/white-black-logo.svg";
 import Image from "next/image";
 import Frame from "@/component/common/Frame";
 
-export default async function Faq() {
-    const faqs = await getFaqs();
+export default async function FaqWrapper({ faqs }) {
     return (
-        <div className="flex flex-col items-center gap-10 sm:gap-20 mx-auto">
+        <section className="flex flex-col items-center gap-10 sm:gap-20 mx-auto">
             <Frame
                 tag="faq"
                 frameContainerStyle="flex flex-col lg:even:mt-20"
                 tagStyle="text-white bg-blue-500 text-xs font-normal tracking-wide px-1.5 py-1 w-max rounded-tl-sm rounded-tr-sm"
                 frameStyle="border-2 border-blue-500 w-max p-3.5"
             >
-                <p className="font-semibold text-xl sm:text-5xl">Frequently Asked Questions</p>
+                <p className="font-semibold text-xl sm:text-5xl">
+                    Frequently Asked Questions
+                </p>
             </Frame>
             <div className="flex flex-col gap-5 px-3">
                 {faqs.map((faq) => (
@@ -54,6 +54,6 @@ export default async function Faq() {
                     </Accordion>
                 ))}
             </div>
-        </div>
+        </section>
     );
 }
