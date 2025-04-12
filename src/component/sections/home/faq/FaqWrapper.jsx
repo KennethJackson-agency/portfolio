@@ -32,8 +32,8 @@ export default async function FaqWrapper({ faqs }) {
                                     <div className="flex items-center gap-3">
                                         <Image
                                             src={logo}
-                                            width={1920}
-                                            height={1080}
+                                            width={512}
+                                            height={512}
                                             alt="logo"
                                             className="w-[32px] sm:w-[40px] h-[32px] sm:h-[40px] rounded-full"
                                             priority

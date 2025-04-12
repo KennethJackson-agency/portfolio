@@ -23,8 +23,8 @@ export default async function AboutWrapper({ abouts }) {
                                 <div className="flex items-center gap-3">
                                     <Image
                                         src={logo}
-                                        width={1920}
-                                        height={1080}
+                                        width={512}
+                                        height={512}
                                         alt="logo"
                                         className="w-[32px] sm:w-[40px] h-[32px] sm:h-[40px] rounded-full"
                                         priority
@@ -85,10 +85,10 @@ export default async function AboutWrapper({ abouts }) {
                                         <div className="flex items-center gap-3">
                                             <Image
                                                 src={`https:${member.fields.profilePicture.fields.file.url}`}
-                                                width={500}
-                                                height={500}
+                                                width={512}
+                                                height={512}
                                                 alt={member.fields.name}
-                                                className="w-[32px] md:w-[40px] h-[30px] md:h-[40px] rounded-full"
+                                                className="w-[32px] sm:w-[40px] h-[32px] sm:h-[40px] rounded-full"
                                                 priority
                                             />
                                             <p className="font-medium text-white text-base">
