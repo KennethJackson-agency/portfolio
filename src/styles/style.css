@@ -107,3 +107,79 @@
     white-space: nowrap;
     animation: marquee 30s linear infinite;
 }
+
+.glitch {
+    position: relative;
+    color: black;
+    animation: glitch 0.7s infinite;
+  }
+  
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    color: black;
+    z-index: -1;
+  }
+  
+  .glitch::before {
+    color: #ff00c8;
+    left: 2px;
+    animation: glitchTop 0.7s infinite;
+  }
+  
+  .glitch::after {
+    color: #00fff9;
+    left: -2px;
+    animation: glitchBottom 0.7s infinite;
+  }
+  
+  @keyframes glitch {
+    0% {
+      transform: none;
+    }
+    20% {
+      transform: skew(-0.5deg, -0.9deg);
+    }
+    40% {
+      transform: skew(0.8deg, 0.4deg);
+    }
+    60% {
+      transform: skew(-1deg, 0deg);
+    }
+    80% {
+      transform: skew(0.5deg, -0.5deg);
+    }
+    100% {
+      transform: none;
+    }
+  }
+  
+  @keyframes glitchTop {
+    0% {
+      clip-path: inset(0 0 80% 0);
+    }
+    50% {
+      clip-path: inset(0 0 10% 0);
+    }
+    100% {
+      clip-path: inset(0 0 80% 0);
+    }
+  }
+  
+  @keyframes glitchBottom {
+    0% {
+      clip-path: inset(80% 0 0 0);
+    }
+    50% {
+      clip-path: inset(10% 0 0 0);
+    }
+    100% {
+      clip-path: inset(80% 0 0 0);
+    }
+  }
+  

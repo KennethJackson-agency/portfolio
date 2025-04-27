@@ -10,6 +10,8 @@ import {
     animate,
 } from "framer-motion";
 import arrowRightIcon from "../../../app/icon/arrow-right.svg";
+import AnimatedCharacterText from "@/component/animations/AnimatedCharacterText";
+import AnimatedLines from "@/component/animations/AnimatedLines";
 
 export default function FooterClient({ abouts }) {
     const navItems = [
@@ -40,7 +42,21 @@ export default function FooterClient({ abouts }) {
     };
 
     // 🌈 Setup aurora animation
-    const COLORS_TOP = ["#FFE2E2", "#FFD6A8", "#FEF3C6", "#FEF9C2", "#ECFCCA", "#DCFCE7", "#D0FAE5", "#CBFBF1", "#CEFAFE", "#DBEAFE", "#E0E7FF", "#FAE8FF", "#FCE7F3"];
+    const COLORS_TOP = [
+        "#FFE2E2",
+        "#FFD6A8",
+        "#FEF3C6",
+        "#FEF9C2",
+        "#ECFCCA",
+        "#DCFCE7",
+        "#D0FAE5",
+        "#CBFBF1",
+        "#CEFAFE",
+        "#DBEAFE",
+        "#E0E7FF",
+        "#FAE8FF",
+        "#FCE7F3",
+    ];
     const color = useMotionValue(COLORS_TOP[0]);
 
     useEffect(() => {
@@ -62,7 +78,6 @@ export default function FooterClient({ abouts }) {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
         >
-
             {/* 🔥 Footer content */}
             <div className="relative z-10 flex flex-col items-center gap-5 px-5 md:px-0 mt-72 mb-40">
                 <motion.nav
@@ -88,22 +103,16 @@ export default function FooterClient({ abouts }) {
                     ))}
                 </motion.nav>
 
-                <motion.p
+                <AnimatedCharacterText
                     className="text-zinc-900 text-xl font-semibold text-center"
-                    variants={itemVariant}
-                >
-                    Still scrolling? That’s a sign.
-                </motion.p>
-
-                <motion.p
-                    className="text-zinc-500 w-full sm:w-[400px] text-center"
-                    variants={itemVariant}
-                >
-                    Forget cookie-cutter solutions. Each project is designed
+                    text="Still scrolling? That’s a sign."
+                />
+                <AnimatedLines
+                    text="Forget cookie-cutter solutions. Each project is designed
                     with purpose—original, intentional, and made to stand out in
-                    a noisy digital world.
-                </motion.p>
-
+                    a noisy digital world."
+                    className="text-zinc-500 w-full sm:w-[400px] text-center"
+                />
                 <motion.div
                     className="flex items-center gap-6 mt-10"
                     variants={containerVariant}
@@ -122,7 +131,10 @@ export default function FooterClient({ abouts }) {
                                 >
                                     <Image
                                         src={`https:${socmed.fields.icon.fields.file.url}`}
-                                        alt={socmed.fields.name || "social media icon"}
+                                        alt={
+                                            socmed.fields.name ||
+                                            "social media icon"
+                                        }
                                         width={24}
                                         height={24}
                                         className="w-[24px] h-[24px]"

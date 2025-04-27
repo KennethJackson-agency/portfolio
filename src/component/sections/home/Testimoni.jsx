@@ -1,3 +1,6 @@
+"use client";
+import AnimatedCharacterText from "@/component/animations/AnimatedCharacterText";
+import AnimatedLines from "@/component/animations/AnimatedLines";
 import React from "react";
 
 function Testimoni() {
@@ -12,13 +15,17 @@ function Testimoni() {
             <p className="hidden lg:block absolute -bottom-24 -left-0 text-xs whitespace-nowrap bg-zinc-900 text-white rounded-tl-xl rounded-b-xl p-2.5 group-hover:scale-[115%] group-hover:rotate-[15deg] duration-300">
                 Fast, smart, creative... you just described yourself 👀
             </p>
-            <div className="flex flex-col items-center gap-4 text-center w-full md:w-[600px]">
-                <p className="text-base sm:text-xl">
-                    Working with this team was a total game-changer. They
+            <div className="flex flex-col gap-4 w-full md:w-[600px]">
+                <AnimatedLines
+                    text="Working with this team was a total game-changer. They
                     understood our product and audience instantly—and the
-                    results showed. Smart, fast, and ridiculously creative.
-                </p>
-                <p className="font-semibold">Amanda Jayvee</p>
+                    results showed. Smart, fast, and ridiculously creative."
+                    className="text-base sm:text-xl text-center"
+                />
+                <AnimatedCharacterText
+                    className="font-semibold"
+                    text="Amanda Jayvee"
+                />
             </div>
         </div>
     );

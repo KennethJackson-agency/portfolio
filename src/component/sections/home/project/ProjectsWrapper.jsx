@@ -1,3 +1,5 @@
+import AnimatedCharacterText from "@/component/animations/AnimatedCharacterText";
+import AnimatedLines from "@/component/animations/AnimatedLines";
 import Frame from "@/component/common/Frame";
 import { formatMonthYear } from "@/component/helper/formatMonthYear";
 import Image from "next/image";
@@ -33,15 +35,17 @@ export default async function Project({ projects }) {
                         </Frame>
 
                         <div className="flex flex-col gap-4 w-[300px] sm:w-[450px] md:w-[350px] lg:w-[400px]">
-                            <p className="text-3xl font-semibold">
-                                {project.fields.projectName}
-                            </p>
-                            <p className="text-zinc-500 text-sm uppercase tracking-widest">
+                            <AnimatedCharacterText
+                                text={project.fields.projectName}
+                                className="text-3xl font-semibold justify-start"
+                            />
+                            <p className="text-zinc-500 text-sm uppercase tracking-widest justify-start">
                                 {formatMonthYear(project.fields.date)}
                             </p>
-                            <p className="text-zinc-900">
-                                {project.fields.projectDescription}
-                            </p>
+                            <AnimatedLines
+                                text={project.fields.projectDescription}
+                                className="text-zinc-900 justify-start"
+                            />
                         </div>
                     </div>
                 ))}

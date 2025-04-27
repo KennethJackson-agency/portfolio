@@ -8,16 +8,20 @@ import Testimoni from "@/component/sections/home/Testimoni";
 import About from "@/component/sections/home/about/About";
 import Faq from "@/component/sections/home/faq/Faq";
 import Footer from "@/component/layout/footer/Footer";
+import Clients from "@/component/sections/home/client/Clients";
 
 export default function Home() {
     return (
         <div>
             <FloatingBar />
-            <div className="flex flex-col gap-52">
+            <div className="flex flex-col gap-32 lg:gap-56">
                 <Header />
                 <Project />
                 <Service />
-                <Stats />
+                <div>
+                    <Stats />
+                    <Clients />
+                </div>
                 <Marquee />
                 <Testimoni />
                 <About />

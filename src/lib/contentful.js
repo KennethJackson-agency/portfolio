@@ -35,3 +35,9 @@ export async function getStats() {
     const res = await client.getEntries({ content_type: "stats" });
     return res.items;
 }
+
+export async function getClients() {
+    const res = await client.getEntries({ content_type: "client" });
+    return res.items;
+}
+

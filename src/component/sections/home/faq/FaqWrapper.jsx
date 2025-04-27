@@ -3,6 +3,7 @@ import React from "react";
 import logo from "../../../../app/icon/white-black-logo.svg";
 import Image from "next/image";
 import Frame from "@/component/common/Frame";
+import AnimatedCharacterText from "@/component/animations/AnimatedCharacterText";
 
 export default async function FaqWrapper({ faqs }) {
     return (
@@ -13,9 +14,10 @@ export default async function FaqWrapper({ faqs }) {
                 tagStyle="text-white bg-blue-500 text-xs font-normal tracking-wide px-1.5 py-1 w-max rounded-tl-sm rounded-tr-sm"
                 frameStyle="border-2 border-blue-500 w-max p-3.5"
             >
-                <p className="font-semibold text-xl sm:text-5xl">
-                    Frequently Asked Questions
-                </p>
+                <AnimatedCharacterText
+                    className="font-semibold text-xl sm:text-5xl"
+                    text="Frequently Asked Questions"
+                />
             </Frame>
             <div className="flex flex-col gap-5 px-3">
                 {faqs.map((faq) => (

@@ -64,10 +64,7 @@ function FloatingBar() {
                 priority
                 className="block sm:hidden absolute top-6 left-6"
             />
-            <motion.nav
-                initial={{ opacity: 0, scaleX: 0, originX: 0.5 }}
-                animate={{ opacity: 1, scaleX: 1 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
+            <nav
                 className="hidden fixed left-1/2 top-10 -translate-x-1/2 sm:flex items-center gap-6 font-medium text-sm text-white bg-zinc-900 rounded-2xl px-6 py-2.5 w-max drop-shadow-lg z-50 origin-center"
             >
                 <div className="relative flex gap-6">
@@ -105,7 +102,7 @@ function FloatingBar() {
                         );
                     })}
                 </div>
-            </motion.nav>
+            </nav>
             {/* Mobile Hamburger */}
             <div className="sm:hidden fixed top-6 right-6 z-50">
                 <button
