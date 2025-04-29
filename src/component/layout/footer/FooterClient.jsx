@@ -11,7 +11,8 @@ import {
 } from "framer-motion";
 import arrowRightIcon from "../../../app/icon/arrow-right.svg";
 import AnimatedCharacterText from "@/component/animations/AnimatedCharacterText";
-import AnimatedLines from "@/component/animations/AnimatedLines";
+import AnimatedParagraph from "@/component/animations/AnimatedParagraph";
+import AnimatedText from "@/component/animations/AnimateText";
 
 export default function FooterClient({ abouts }) {
     const navItems = [
@@ -107,11 +108,12 @@ export default function FooterClient({ abouts }) {
                     className="text-zinc-900 text-xl font-semibold text-center"
                     text="Still scrolling? That’s a sign."
                 />
-                <AnimatedLines
+                <AnimatedText
                     text="Forget cookie-cutter solutions. Each project is designed
                     with purpose—original, intentional, and made to stand out in
                     a noisy digital world."
-                    className="text-zinc-500 w-full sm:w-[400px] text-center"
+                    delayPerWord={0.08}
+                    className="text-zinc-500 w-[315px] sm:w-[400px] text-center"
                 />
                 <motion.div
                     className="flex items-center gap-6 mt-10"

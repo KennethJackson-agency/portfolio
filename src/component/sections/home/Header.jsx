@@ -1,7 +1,7 @@
 "use client";
 
-import AnimatedButton from "@/component/animations/AnimatedButton";
-import AnimatedLines from "@/component/animations/AnimatedLines";
+import AnimatedInView from "@/component/animations/AnimatedInView";
+import AnimatedParagraph from "@/component/animations/AnimatedParagraph";
 import AnimatedText from "@/component/animations/AnimateText";
 import { motion } from "framer-motion";
 
@@ -23,22 +23,25 @@ function Header() {
                             className="font-semibold text-3xl sm:text-4xl md:text-5xl leading-10"
                             delayPerWord={0.08}
                         />
+                        <AnimatedParagraph className="text-zinc-700">
+                            We're the powerhouse behind your digital presence
+                            🚀, specializing in seamless IT integration 💻,
+                            vibrant video production 🎬, irresistible copy ✍️,
+                            and impactful digital marketing 📈. Propel your
+                            brand forward.✨
+                        </AnimatedParagraph>
                     </div>
-
-                    <AnimatedLines
-                        text="We're the powerhouse behind your digital presence 🚀,
-                        specializing in seamless IT integration 💻, vibrant
-                        video production 🎬, irresistible copy ✍️, and impactful
-                        digital marketing 📈. Propel your brand forward.✨"
-                    />
                 </div>
 
                 <div className="tooltip-wrapper relative inline-block mx-auto duration-300">
-                    <AnimatedButton
-                        text="Let's Collaborate 🤝"
-                        aria-label="Collaborate with us"
-                        buttonClassName="collab-button bg-zinc-900 text-white text-sm rounded-full px-10 py-3.5 text-center cursor-pointer inline-block drop-shadow-xl"
-                    />
+                    <AnimatedInView>
+                        <button
+                            className="bg-zinc-900 text-white text-sm rounded-full px-10 py-3.5 text-center cursor-pointer inline-block drop-shadow-xl"
+                            aria-label="Collaborate with us"
+                        >
+                            Let's Collaborate 🤝
+                        </button>
+                    </AnimatedInView>
                     <span className="tooltip-text absolute -bottom-20 -left-56 text-xs whitespace-nowrap bg-zinc-900 text-white rounded-xl p-2.5 rotate-[18deg] invisible opacity-0 drop-shadow-xl z-10 pointer-events-none">
                         Let's build something cool together! ✨
                     </span>

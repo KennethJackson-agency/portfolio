@@ -1,6 +1,5 @@
 "use client";
 
-import AnimatedLines from "@/component/animations/AnimatedLines";
 import AnimatedText from "@/component/animations/AnimateText";
 import ZoomInJugglyCard from "@/component/animations/ZoomInJugglyCard";
 
@@ -18,15 +17,19 @@ export default function ServiceWrapper({ services }) {
                         text="What We"
                         className="justify-start"
                     />
-                    <AnimatedText startDelay={0.3} text="Bring to the Table" />
+                    <AnimatedText
+                        startDelay={0.3}
+                        text="Bring to the Table"
+                        className="justify-start"
+                    />
                 </div>
                 <div className="w-full md:w-[375px] font-normal">
-                    <AnimatedLines
-                        text=" From tech magic to creative firepower, our services are
-                    built to help your brand perform, connect, and grow in a
-                    digital-first world."
+                    <AnimatedText
                         startDelay={0.3}
-                        delayPerLine={0.25}
+                        text="From tech magic to creative firepower, our services are
+                    built to help your brand perform, connect, and grow in a
+                    digital-first world"
+                        className="justify-start"
                     />
                 </div>
             </div>

@@ -41,3 +41,20 @@ export async function getClients() {
     return res.items;
 }
 
+export async function fetchAllProjects() {
+    const response = await client.getEntries({ content_type: "project" });
+    return response.items;
+}
+
+export async function fetchProjectBySlug(slug) {
+    if (!slug || typeof slug !== "string") {
+        throw new Error("Invalid slug parameter");
+    }
+
+    const response = await client.getEntries({
+        content_type: "project",
+        "fields.slug": slug,
+    });
+
+    return response.items[0] || null;
+}

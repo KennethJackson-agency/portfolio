@@ -1,8 +1,9 @@
 import AnimatedCharacterText from "@/component/animations/AnimatedCharacterText";
-import AnimatedLines from "@/component/animations/AnimatedLines";
+import AnimatedParagraph from "@/component/animations/AnimatedParagraph";
 import Frame from "@/component/common/Frame";
 import { formatMonthYear } from "@/component/helper/formatMonthYear";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default async function Project({ projects }) {
@@ -10,9 +11,10 @@ export default async function Project({ projects }) {
         <section id="work" className="relative max-w-min mx-auto">
             <div className="columns-1 md:columns-2 gap-x-20 md:gap-x-10 lg:gap-x-32 space-y-20">
                 {projects.map((project) => (
-                    <div
+                    <Link
                         key={project.sys.id}
-                        className="inline-block w-max break-inside-avoid"
+                        href={`/projects/${project.fields.slug}`}
+                        className="inline-block w-max break-inside-avoid cursor-pointer"
                     >
                         <Frame
                             tag={project.fields.tag}
@@ -29,7 +31,7 @@ export default async function Project({ projects }) {
                                 width={1920}
                                 height={1080}
                                 alt={project.fields.projectName}
-                                className="w-[300px] sm:w-[400px] md:w-[300px] lg:w-[400px] h-auto"
+                                className="w-[315px] sm:w-[400px] md:w-[315px] lg:w-[400px] h-auto"
                                 priority
                             />
                         </Frame>
@@ -37,17 +39,16 @@ export default async function Project({ projects }) {
                         <div className="flex flex-col gap-4 w-[300px] sm:w-[450px] md:w-[350px] lg:w-[400px]">
                             <AnimatedCharacterText
                                 text={project.fields.projectName}
-                                className="text-3xl font-semibold justify-start"
+                                className="text-2xl sm:text-3xl font-semibold justify-start whitespace-nowrap"
                             />
                             <p className="text-zinc-500 text-sm uppercase tracking-widest justify-start">
                                 {formatMonthYear(project.fields.date)}
                             </p>
-                            <AnimatedLines
-                                text={project.fields.projectDescription}
-                                className="text-zinc-900 justify-start"
-                            />
+                            <AnimatedParagraph className="text-gray-700">
+                                {project.fields.projectDescription}
+                            </AnimatedParagraph>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </section>

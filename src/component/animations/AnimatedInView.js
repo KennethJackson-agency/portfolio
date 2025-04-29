@@ -3,16 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
-export default function AnimatedButton({
-  text = "Button",
+export default function AnimatedInView({
+  children,
   startDelay = 0,
-  buttonClassName = "", 
   wrapperClassName = "",
+  animationClassName = "",
+  amount = 0.6,
 }) {
   const containerRef = useRef(null);
   const [ready, setReady] = useState(false);
   const controls = useAnimation();
-  const isInView = useInView(containerRef, { amount: 0.6, once: false });
+  const isInView = useInView(containerRef, { amount, once: false });
 
   useEffect(() => {
     if (isInView) {
@@ -23,25 +24,25 @@ export default function AnimatedButton({
   }, [isInView, controls]);
 
   useEffect(() => {
-    if (text) {
+    if (children) {
       setReady(true);
     }
-  }, [text]);
+  }, [children]);
 
   return (
-    <div className={`relative overflow-hidden ${wrapperClassName}`}>
-      {/* Dummy element untuk inView detection */}
+    <div className={`relative w-full ${wrapperClassName}`}>
+      {/* Dummy element hanya untuk inView detection */}
       <div
         ref={containerRef}
-        className="absolute opacity-0 pointer-events-none select-none"
+        className="absolute top-0 left-0 w-1 h-1 opacity-0 pointer-events-none select-none"
         aria-hidden="true"
       >
-        {text}
+        .
       </div>
 
-      {/* Animated Button */}
+      {/* Animated Content */}
       {ready && (
-        <motion.button
+        <motion.div
           initial="hidden"
           animate={controls}
           variants={{
@@ -50,16 +51,16 @@ export default function AnimatedButton({
               y: 0,
               opacity: 1,
               transition: {
-                duration: 0.2,
+                duration: 0.5,
                 delay: startDelay,
                 ease: [0.22, 1, 0.36, 1],
               },
             },
           }}
-          className={`${buttonClassName}`} // buttonClassName tambahan custom
+          className={`${animationClassName}`}
         >
-          {text}
-        </motion.button>
+          {children}
+        </motion.div>
       )}
     </div>
   );
