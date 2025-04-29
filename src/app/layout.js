@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import "@/styles/style.css";
 import { Instrument_Sans } from "next/font/google";
 import FaviconAnimator from "@/component/animations/FaviconAnimator";
+import PageTransitionWrapper from "@/component/animations/PageTransitionWrapper";
 
 const instrumentSans = Instrument_Sans({
     subsets: ["latin"],
@@ -28,7 +29,7 @@ export default function RootLayout({ children }) {
             </head>
             <body style={{ fontFamily: "var(--font-instrument)" }}>
                 <FaviconAnimator />
-                {children}
+                <PageTransitionWrapper>{children}</PageTransitionWrapper>
             </body>
         </html>
     );
