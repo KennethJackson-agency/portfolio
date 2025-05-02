@@ -19,7 +19,7 @@ export default async function ProjectDetails(props) {
     const project = await fetchProjectBySlug(params.slug);
     return (
         <section
-            className="mx-auto py-20 px-4 md:px-10 lg:px-20"
+            className="flex flex-col mx-auto py-20 px-4 md:px-10 lg:px-20"
         >
             <AnimatedInView>
                 <Link
@@ -40,10 +40,10 @@ export default async function ProjectDetails(props) {
                             d="M15.75 19.5 8.25 12l7.5-7.5"
                         />
                     </svg>{" "}
-                    <p>Back</p>
+                    <p className="font-medium">Back</p>
                 </Link>
             </AnimatedInView>
-            <div className="flex flex-col items-start gap-20 pt-10">
+            <div className="flex flex-col gap-20 pt-10 max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row gap-20">
                     <div className="flex flex-col gap-4 w-full">
                         <AnimatedCharacterText
@@ -90,7 +90,7 @@ export default async function ProjectDetails(props) {
                     width={1920}
                     height={1080}
                     alt={project.fields.projectName}
-                    className="aspect-[16/8] rounded-3xl object-cover"
+                    className="aspect-[16/8] rounded-3xl object-cover w-full max-w-7xl"
                     priority
                 />
             </div>
