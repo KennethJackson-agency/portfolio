@@ -40,15 +40,6 @@ export default function FaviconAnimator() {
             angle += 0.02;
             requestAnimationFrame(updateFavicon);
         };
-
-        // image.onload = () => {
-        //     console.log("✅ Favicon image loaded");
-        //     updateFavicon();
-        // };
-
-        // image.onerror = () => {
-        //     console.error("❌ Failed to load favicon image");
-        // };
     }, []);
 
     return null;

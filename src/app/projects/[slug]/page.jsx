@@ -12,11 +12,18 @@ export async function generateStaticParams() {
     return projects.map((project) => ({
         slug: project.fields.slug,
     }));
+
 }
 
 export default async function ProjectDetails(props) {
     const params = await props.params;
     const project = await fetchProjectBySlug(params.slug);
+
+    const asset = project.fields.projectAsset;
+    const isImage = asset.fields.file.contentType.startsWith("image/");
+    const isVideo = asset.fields.file.contentType.startsWith("video/");
+    const gallery = project.fields.gallery;
+
     return (
         <section
             className="flex flex-col mx-auto py-20 px-4 md:px-10 lg:px-20"
@@ -85,14 +92,59 @@ export default async function ProjectDetails(props) {
                         </div>
                     </div>
                 </div>
-                <Image
-                    src={`https:${project.fields.projectImage.fields.file.url}`}
-                    width={1920}
-                    height={1080}
-                    alt={project.fields.projectName}
-                    className="aspect-[16/8] rounded-3xl object-cover w-full max-w-7xl"
-                    priority
-                />
+                {isImage && (
+                    <Image
+                        src={`https:${asset.fields.file.url}`}
+                        width={1920}
+                        height={1080}
+                        alt={project.fields.projectName}
+                        className="aspect-[16/8] rounded-xl md:rounded-3xl object-cover w-full max-w-7xl"
+                        priority
+                    />
+                )}
+
+                {isVideo && (
+                    <video
+                        src={`https:${asset.fields.file.url}`}
+                        className="aspect-[16/8] rounded-xl md:rounded-3xl object-cover w-full max-w-7xl"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                    />
+                )}
+                <section className="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
+                    {gallery.map((item, index) => {
+                        const file = item.fields.file;
+                        const url = `https:${file.url}`;
+                        const title = item.fields.title || project.fields.projectName;
+                        const isImage = file.contentType.startsWith('image/');
+                        const isVideo = file.contentType.startsWith('video/');
+
+                        return (
+                            <div key={index} className="break-inside-avoid overflow-hidden rounded-xl">
+                                {isImage ? (
+                                    <Image
+                                        src={url}
+                                        alt={title}
+                                        width={800}
+                                        height={600}
+                                        className="w-full h-auto rounded-xl object-cover"
+                                    />
+                                ) : isVideo ? (
+                                    <video
+                                        src={url}
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                        className="aspect-[16/8] object-cover w-full rounded-xl"
+                                    />
+                                ) : null}
+                            </div>
+                        );
+                    })}
+                </section>
             </div>
         </section>
     );

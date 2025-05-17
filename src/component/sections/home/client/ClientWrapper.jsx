@@ -13,7 +13,7 @@ function ClientWrapper({ clients }) {
                             width={300}
                             height={300}
                             alt={logo.fields.title || "Client logo"}
-                            className="w-max h-[24px] object-contain"
+                            className="w-max h-[32px] object-contain"
                             priority
                         />
                     ) : null

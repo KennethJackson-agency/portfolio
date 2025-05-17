@@ -9,7 +9,7 @@ const navItems = [
     { label: "About", id: "about" },
     { label: "Work", id: "work" },
     { label: "Service", id: "service" },
-    { label: "Contact", href: "/contact" },
+    { label: "Contact", href: "https://wa.me/6285117448838" },
 ];
 
 const scrollToSection = (id) => {

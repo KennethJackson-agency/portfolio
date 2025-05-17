@@ -27,7 +27,7 @@ export default async function Project({ projects }) {
                             }}
                         >
                             <Image
-                                src={`https:${project.fields.projectImage.fields.file.url}`}
+                                src={`https:${project.fields.thumbnailImage.fields.file.url}`}
                                 width={1920}
                                 height={1080}
                                 alt={project.fields.projectName}
