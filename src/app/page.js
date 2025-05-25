@@ -4,7 +4,7 @@ import Project from "@/component/sections/home/project/Project";
 import Service from "@/component/sections/home/service/Service";
 import Stats from "@/component/sections/home/stats/Stats";
 import Marquee from "@/component/sections/home/Marquee";
-import Testimoni from "@/component/sections/home/Testimoni";
+import Testimony from "@/component/sections/home/testimony/Testimony";
 import About from "@/component/sections/home/about/About";
 import Faq from "@/component/sections/home/faq/Faq";
 import Footer from "@/component/layout/footer/Footer";
@@ -23,7 +23,7 @@ export default function Home() {
                     <Clients />
                 </div>
                 <Marquee />
-                <Testimoni />
+                <Testimony />
                 <About />
                 <Faq />
             </div>

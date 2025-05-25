@@ -9,7 +9,7 @@ const navItems = [
     { label: "About", id: "about" },
     { label: "Work", id: "work" },
     { label: "Service", id: "service" },
-    { label: "Contact", href: "https://wa.me/6285117448838" },
+    { label: "Contact", href: "/contact" },
 ];
 
 const scrollToSection = (id) => {
@@ -127,21 +127,35 @@ function FloatingBar() {
             </div>
             {/* Mobile Dropdown */}
             <nav
-                className={`sm:hidden fixed top-20 right-6 bg-zinc-900 text-white rounded-xl py-4 px-6 text-sm font-medium drop-shadow-lg z-40 transform transition-all duration-300 ease-in-out ${
-                    isOpen
-                        ? "translate-x-0 opacity-100"
-                        : "translate-x-full opacity-0 pointer-events-none"
-                }`}
+                className={`sm:hidden fixed top-20 right-6 bg-zinc-900 text-white rounded-xl py-4 px-6 text-sm font-medium drop-shadow-lg z-40 transform transition-all duration-300 ease-in-out ${isOpen
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-full opacity-0 pointer-events-none"
+                    }`}
             >
                 <div className="flex flex-col items-end space-y-3">
-                    {navItems.map((item, i) => (
-                        <button
-                            key={i}
-                            onClick={() => scrollToSection(item.id)}
-                        >
-                            <span>{item.label}</span>
-                        </button>
-                    ))}
+                    {navItems.map((item, i) =>
+                        item.href ? (
+                            <Link
+                                key={i}
+                                href={item.href}
+                                className="text-right"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {item.label}
+                            </Link>
+                        ) : (
+                            <button
+                                key={i}
+                                onClick={() => {
+                                    scrollToSection(item.id);
+                                    setIsOpen(false);
+                                }}
+                            >
+                                <span>{item.label}</span>
+                            </button>
+                        )
+                    )}
+
                 </div>
             </nav>
         </div>

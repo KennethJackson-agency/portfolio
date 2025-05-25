@@ -11,7 +11,6 @@ import {
 } from "framer-motion";
 import arrowRightIcon from "../../../app/icon/arrow-right.svg";
 import AnimatedCharacterText from "@/component/animations/AnimatedCharacterText";
-import AnimatedParagraph from "@/component/animations/AnimatedParagraph";
 import AnimatedText from "@/component/animations/AnimateText";
 
 export default function FooterClient({ abouts }) {
@@ -132,7 +131,7 @@ export default function FooterClient({ abouts }) {
                                     className="hover:opacity-80 transition-opacity"
                                 >
                                     <Image
-                                        src={`https:${socmed.fields.icon.fields.file.url}`}
+                                        src={`https:${socmed.fields.bwIcon.fields.file.url}`}
                                         alt={
                                             socmed.fields.name ||
                                             "social media icon"

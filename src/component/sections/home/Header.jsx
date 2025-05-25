@@ -40,12 +40,13 @@ function Header() {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <button
+                            <a
+                                href= "/contact"
                                 className="bg-zinc-900 text-white text-sm rounded-full px-10 py-3.5 text-center cursor-pointer inline-block drop-shadow-xl"
                                 aria-label="Collaborate with us"
                             >
                                 Let's Collaborate 🤝
-                            </button>
+                            </a>
                         </a>
                     </AnimatedInView>
                     <span className="tooltip-text absolute -bottom-20 -left-56 text-xs whitespace-nowrap bg-zinc-900 text-white rounded-xl p-2.5 rotate-[18deg] invisible opacity-0 drop-shadow-xl z-10 pointer-events-none">

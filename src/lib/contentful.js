@@ -46,6 +46,11 @@ export async function fetchAllProjects() {
     return response.items;
 }
 
+export async function getTestimonies() {
+    const response = await client.getEntries({ content_type: "testimony" });
+    return response.items;
+}
+
 export async function fetchProjectBySlug(slug) {
     if (!slug || typeof slug !== "string") {
         throw new Error("Invalid slug parameter");
