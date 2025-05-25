@@ -3,6 +3,7 @@
 import AnimatedInView from "@/component/animations/AnimatedInView";
 import AnimatedParagraph from "@/component/animations/AnimatedParagraph";
 import AnimatedText from "@/component/animations/AnimateText";
+import { trackEvent } from "@/lib/gtagEvents";
 import { motion } from "framer-motion";
 
 function Header() {
@@ -36,17 +37,20 @@ function Header() {
                 <div className="tooltip-wrapper relative inline-block mx-auto duration-300">
                     <AnimatedInView>
                         <a
-                            href="https://wa.me/6285117448838"
+                            href="/contact"
+                            onClick={() => {
+                                trackEvent({
+                                    action: 'click_lets_collaborate_button',
+                                    category: 'CTA',
+                                    label: 'Lets Collaborate Button',
+                                });
+                            }}
+                            className="bg-zinc-900 text-white text-sm rounded-full px-10 py-3.5 text-center cursor-pointer inline-block drop-shadow-xl"
+                            aria-label="Collaborate with us"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <a
-                                href= "/contact"
-                                className="bg-zinc-900 text-white text-sm rounded-full px-10 py-3.5 text-center cursor-pointer inline-block drop-shadow-xl"
-                                aria-label="Collaborate with us"
-                            >
-                                Let's Collaborate 🤝
-                            </a>
+                            Let's Collaborate 🤝
                         </a>
                     </AnimatedInView>
                     <span className="tooltip-text absolute -bottom-20 -left-56 text-xs whitespace-nowrap bg-zinc-900 text-white rounded-xl p-2.5 rotate-[18deg] invisible opacity-0 drop-shadow-xl z-10 pointer-events-none">

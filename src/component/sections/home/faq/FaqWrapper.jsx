@@ -1,3 +1,5 @@
+'use client';
+
 import Accordion from "@/component/common/Accordion";
 import React from "react";
 import logo from "../../../../app/icon/white-black-logo.svg";
@@ -5,8 +7,9 @@ import Image from "next/image";
 import Frame from "@/component/common/Frame";
 import AnimatedCharacterText from "@/component/animations/AnimatedCharacterText";
 import AnimatedInView from "@/component/animations/AnimatedInView";
+import { trackEvent } from "@/lib/gtagEvents";
 
-export default async function FaqWrapper({ faqs }) {
+export default function FaqWrapper({ faqs }) {
     return (
         <section className="flex flex-col items-center gap-10 sm:gap-20 mx-auto">
             <Frame
@@ -22,11 +25,18 @@ export default async function FaqWrapper({ faqs }) {
             </Frame>
             <div className="flex flex-col gap-5 px-3">
                 {faqs.map((faq) => (
-                    <AnimatedInView >
+                    <AnimatedInView
+                        key={faq.sys.id}>
                         <Accordion
-                            key={faq.sys.id}
                             defaultOpen={false}
                             title={faq.fields.question}
+                            onToggle={() =>
+                                trackEvent({
+                                    action: `click_faq_${faq.fields.question}`,
+                                    category: 'FAQ',
+                                    label: 'Accordion Opened',
+                                })
+                            }
                             accordionContainerStyle="bg-zinc-900 w-full sm:w-[600px] rounded-xl sm:rounded-3xl"
                             titleStyle="font-medium text-white text-base sm:text-xl text-left pr-10"
                         >

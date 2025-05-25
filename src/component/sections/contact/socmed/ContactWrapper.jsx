@@ -1,5 +1,6 @@
 import React from "react";
 import ContactCard from "../contactCard/ContactCard";
+import { trackEvent } from "@/lib/gtagEvents";
 
 export default async function ContactWrapper({ contacts }) {
 	const socialMedia = contacts?.[0]?.fields?.socialMedia || [];
@@ -30,6 +31,13 @@ export default async function ContactWrapper({ contacts }) {
 							iconSrc={item.fields.fullColorIcon.fields.file.url}
 							bgColor="bg-zinc-900"
 							iconBg={isWhatsApp ? "bg-green-200" : "bg-red-200"}
+							onClick={() => {
+								trackEvent({
+									action: isWhatsApp ? 'click_whatsapp_contact' : 'click_email_contact',
+									category: 'Contact Section',
+									label: isWhatsApp ? 'WhatsApp Button' : 'Email Button',
+								});
+							}}
 						/>
 					);
 				})}

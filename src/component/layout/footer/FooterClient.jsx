@@ -12,6 +12,7 @@ import {
 import arrowRightIcon from "../../../app/icon/arrow-right.svg";
 import AnimatedCharacterText from "@/component/animations/AnimatedCharacterText";
 import AnimatedText from "@/component/animations/AnimateText";
+import { trackEvent } from "@/lib/gtagEvents";
 
 export default function FooterClient({ abouts }) {
     const navItems = [
@@ -88,7 +89,14 @@ export default function FooterClient({ abouts }) {
                         <motion.button
                             variants={itemVariant}
                             key={i}
-                            onClick={() => scrollToSection(item.id)}
+                            onClick={() => {
+                                trackEvent({
+                                    action: 'click_social_media_footer',
+                                    category: 'Footer',
+                                    label: item.label,
+                                });
+                                scrollToSection(item.id);
+                              }}
                             className="group flex items-center gap-2 text-zinc-900 hover:text-zinc-300 transition-colors cursor-pointer"
                         >
                             <span>{item.label}</span>

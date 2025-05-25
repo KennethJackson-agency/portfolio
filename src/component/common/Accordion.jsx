@@ -10,6 +10,7 @@ export default function Accordion({
     title,
     children,
     defaultOpen = false,
+    onToggle,
 }) {
     const [isOpen, setIsOpen] = useState(defaultOpen);
     const contentRef = useRef(null);
@@ -18,6 +19,10 @@ export default function Accordion({
     useEffect(() => {
         if (isOpen) {
             setHeight(`${contentRef.current.scrollHeight}px`);
+
+            if (typeof onToggle === "function") {
+                onToggle();
+            }
         } else {
             setHeight("0px");
         }
@@ -27,9 +32,8 @@ export default function Accordion({
         <div className={accordionContainerStyle}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`flex items-center justify-between w-full px-[10px] py-[15px] sm:p-[25px] cursor-pointer duration-500 ${
-                    isOpen ? "border-b border-zinc-600" : "border-none"
-                }`}
+                className={`flex items-center justify-between w-full px-[10px] py-[15px] sm:p-[25px] cursor-pointer duration-500 ${isOpen ? "border-b border-zinc-600" : "border-none"
+                    }`}
                 aria-expanded={isOpen}
             >
                 <span className={titleStyle}>{title}</span>
@@ -42,12 +46,9 @@ export default function Accordion({
                 />
             </button>
 
-            {/* Always render children but animate height */}
             <div
                 ref={contentRef}
-                style={{
-                    maxHeight: height,
-                }}
+                style={{ maxHeight: height }}
                 className="transition-all duration-500 overflow-hidden"
             >
                 <div className="flex flex-col gap-7 text-sm text-zinc-600 px-[10px] py-[15px] sm:p-[25px]">

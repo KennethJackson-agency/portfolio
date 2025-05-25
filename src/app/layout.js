@@ -3,6 +3,8 @@ import "@/styles/style.css";
 import { Instrument_Sans } from "next/font/google";
 import FaviconAnimator from "@/component/animations/FaviconAnimator";
 import PageTransitionWrapper from "@/component/animations/PageTransitionWrapper";
+import Script from "next/script";
+import AnalyticsProvider from "@/component/analytic/AnalyticProvider";
 
 const instrumentSans = Instrument_Sans({
     subsets: ["latin"],
@@ -26,8 +28,24 @@ export default function RootLayout({ children }) {
                 <link rel="icon" href={metadata.icons.icon} />
                 <meta name="description" content={metadata.description} />
                 <title>{metadata.title}</title>
+                {/* Google Analytics */}
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-C7R89RDYSC"
+                    strategy="afterInteractive"
+                />
+                <Script id="gtag-init" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-C7R89RDYSC', {
+                        page_path: window.location.pathname,
+                        });
+                    `}
+                </Script>
             </head>
             <body style={{ fontFamily: "var(--font-instrument)" }}>
+                <AnalyticsProvider />
                 <FaviconAnimator />
                 <PageTransitionWrapper>{children}</PageTransitionWrapper>
             </body>

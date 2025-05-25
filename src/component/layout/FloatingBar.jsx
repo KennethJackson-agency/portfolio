@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { trackEvent } from "@/lib/gtagEvents";
 
 const navItems = [
     { label: "About", id: "about" },
@@ -75,6 +76,13 @@ function FloatingBar() {
                             <Link
                                 key={label}
                                 href={href}
+                                onClick={() => {
+                                    trackEvent({
+                                        action: `click_navigation_' + ${label}`,
+                                        category: 'Navigation',
+                                        label: 'Floating Bar',
+                                    });
+                                }}
                                 className="relative z-10 px-2 py-1 cursor-pointer"
                             >
                                 {label}

@@ -5,5 +5,5 @@ export const revalidate = 1;
 
 export default async function Faq() {
     const faqs = await getFaqs();
-    return <FaqWrapper faqs={faqs ?? []} />;
+    return <FaqWrapper faqs={faqs} />;
 }
