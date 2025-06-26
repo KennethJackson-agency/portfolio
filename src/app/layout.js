@@ -1,10 +1,11 @@
 import "@/styles/globals.css";
 import "@/styles/style.css";
+import "@/styles/markdown.css";
 import { Instrument_Sans } from "next/font/google";
-import FaviconAnimator from "@/component/animations/FaviconAnimator";
-import PageTransitionWrapper from "@/component/animations/PageTransitionWrapper";
+import FaviconAnimator from "@/lib/common/animations/FaviconAnimator";
+import PageTransitionWrapper from "@/lib/common/animations/PageTransitionWrapper";
 import Script from "next/script";
-import AnalyticsProvider from "@/component/analytic/AnalyticProvider";
+import AnalyticsProvider from "@/lib/global/analytic/AnalyticProvider";
 
 const instrumentSans = Instrument_Sans({
     subsets: ["latin"],

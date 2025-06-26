@@ -1,4 +1,4 @@
-import { fetchAllProjects } from "@/lib/contentful";
+import { fetchAllProjects } from "@/lib/global/contentful/contentful";
 
 export async function GET() {
   const baseUrl = 'https://kjagency.id';

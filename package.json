@@ -11,15 +11,18 @@
   "dependencies": {
     "contentful": "^11.5.11",
     "framer-motion": "^12.6.2",
+    "moment": "^2.30.1",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-countup": "^6.5.3",
     "react-dom": "^19.0.0",
     "react-intersection-observer": "^9.16.0",
+    "react-markdown": "^10.1.0",
     "split-type": "^0.3.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",

@@ -1,8 +1,10 @@
+/* Next JS */
 "use client";
-
-import Link from "next/link";
-import { motion, useAnimation } from "framer-motion";
 import { useState } from "react";
+import Link from "next/link";
+
+/* External Library */
+import { motion, useAnimation } from "framer-motion";
 
 export default function NotFound() {
     const controls = useAnimation();
