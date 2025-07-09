@@ -23,14 +23,14 @@ function Header() {
                     <div className="space-y-1 md:space-y-8 items-center">
                         <AnimatedText
                             text="Amplify Your Impact"
-                            className="font-semibold text-3xl sm:text-4xl md:text-5xl"
+                            className="font-medium text-3xl sm:text-4xl md:text-5xl"
                         />
                         <AnimatedText
                             text="Transform Your Brand Today"
-                            className="font-semibold text-3xl sm:text-4xl md:text-5xl leading-10"
+                            className="font-medium text-3xl sm:text-4xl md:text-5xl leading-10"
                             delayPerWord={0.08}
                         />
-                        <AnimatedParagraph className="text-zinc-700">
+                        <AnimatedParagraph className="text-zinc-500">
                             We're the powerhouse behind your digital presence
                             🚀, specializing in seamless IT integration 💻,
                             vibrant video production 🎬, irresistible copy ✍️,

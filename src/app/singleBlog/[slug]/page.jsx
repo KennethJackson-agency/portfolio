@@ -31,12 +31,7 @@ export default async function Blog({ params }) {
 
 	return (
 		<div>
-			<div className="flex flex-col items-center gap-10 pt-0 sm:pt-10">
-				{/* Back button – mobile */}
-				<div className='absolute top-5 left-5 block sm:hidden'>
-					<BackBtn />
-				</div>
-
+			<div className="flex flex-col gap-10 pt-0 sm:pt-10">
 				{/* Mobile Thumbnail */}
 				<Image
 					src={thumbnailUrl}
@@ -47,40 +42,40 @@ export default async function Blog({ params }) {
 					className="block sm:hidden absolute w-full h-[25rem] object-cover mx-auto -z-10"
 				/>
 
-				<div className="bg-white mt-64 sm:mt-0 rounded-3xl px-5 pt-10">
-					<BlogHeader
-						tagList={blogData.tagList}
-						titleText={blogData.titleText}
-						authorName={blogData.authorName}
-						authorRole={blogData.authorRole}
-						authorProfileImageUrl={blogData.authorProfileImageUrl}
-						blogCreatedAt={blogData.blogCreatedAt}
-						contentText={blogData.contentText} />
+				<div className="bg-white flex flex-col items-center space-y-0 md:space-y-20 mt-64 sm:mt-0 rounded-3xl pt-10 mx-auto">
+					<div className='space-y-10'>
+						<BlogHeader
+							titleText={blogData.titleText}
+							authorName={blogData.authorName}
+							authorRole={blogData.authorRole}
+							authorProfileImageUrl={blogData.authorProfileImageUrl}
+							blogCreatedAt={blogData.blogCreatedAt}
+							contentText={blogData.contentText} />
 
-					{/* Thumbnail – desktop */}
-					<Image
-						src={thumbnailUrl}
-						width={1920}
-						height={1080}
-						alt={titleText}
-						priority
-						className="hidden sm:block w-[75rem] aspect-video mx-auto rounded-2xl"
-					/>
+						{/* Thumbnail – desktop */}
+						<Image
+							src={thumbnailUrl}
+							width={1920}
+							height={1080}
+							alt={titleText}
+							priority
+							className="hidden sm:block aspect-video w-full max-w-[70rem] mx-auto"
+						/>
+					</div>
 
 					{/* Content */}
 					<BlogContent
 						description={blogData.descriptionText}
 						content={blogData.contentText}
 						referenceList={blogData.referenceList} />
-
-					{/* Related Blogs */}
-					<div>
-						<div className="bg-zinc-300 w-full h-px my-16" />
-						<RelatedBlogs relatedBlogs={relatedBlogs} />
-					</div>
 				</div>
+
+				{/* Related Blogs */}
+				<RelatedBlogs relatedBlogs={relatedBlogs} />
 			</div>
-			<Footer />
+			<div className='mt-72'>
+				<Footer />
+			</div>
 		</div>
 	);
 }

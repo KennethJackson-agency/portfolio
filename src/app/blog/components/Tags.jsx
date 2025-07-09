@@ -11,12 +11,12 @@ export default function Tags({ tags = [], selectedTags = [], onToggle }) {
 					<button
 						key={tag}
 						onClick={() => onToggle(tag)}
-						className={`px-5 py-2 border border-zinc-200 hover:border-violet-100 hover:bg-violet-100 rounded-full capitalize text-sm font-medium transition cursor-pointer ${isSelected
-							? 'bg-violet-500 text-white'
-							: 'text-zinc-700'
+						className={`px-5 py-2  hover:bg-black hover:text-white rounded-full capitalize text-sm font-medium transition cursor-pointer ${isSelected
+							? 'bg-black text-white'
+							: 'bg-zinc-100 text-black'
 							}`}
 					>
-						#{tag}
+						{tag}
 					</button>
 				);
 			})}

@@ -8,6 +8,7 @@ import { useInView } from "react-intersection-observer";
 
 /* Icon */
 import dropletIcon from "../../../assets/icon/droplet.svg";
+import AnimatedText from "@/lib/common/animations/AnimateText";
 
 export default function StatsWrapper({ stats }) {
     if (!stats) return null
@@ -33,15 +34,13 @@ export default function StatsWrapper({ stats }) {
                         </p>
                     </div>
                 </div>
-                <p className="text-zinc-900 w-full sm:w-[450px]">
-                    Our clients are{" "}
-                    <span className="text-[#F6339A]">bold thinkers</span> and{" "}
-                    <span className="text-[#2B7FFF]">future-shapers</span>.
-                    We’re proud to fuel their vision with{" "}
-                    <span className="text-[#FF6900]">creative</span> and{" "}
-                    <span className="text-[#00C950]">digital firepower</span>{" "}
-                    —because their success tells our story.
-                </p>
+                <div className="text-zinc-900 w-full sm:w-[450px]">
+                    <AnimatedText
+                        startDelay={0.3}
+                        text="Our clients are bold thinkers and future-shapers. We’re proud to fuel their vision with creative and digital firepower —because their success tells our story."
+                        className="justify-start"
+                    />
+                </div>
             </div>
 
             {/* Stats */}

@@ -8,6 +8,7 @@ import EmptyState from "./EmptyState";
 /* Assets */
 import SearchIcon from '../../../assets/icon/whiteSearch.svg'
 import Image from "next/image";
+import Header from "./Header";
 
 export default function FilterableBlogs({ blogs = [] }) {
 	const [selectedTags, setSelectedTags] = useState([]);
@@ -45,33 +46,36 @@ export default function FilterableBlogs({ blogs = [] }) {
 	});
 
 	return (
-		<div className="space-y-12">
+		<div className="space-y-5">
 			<div className="space-y-5">
 				{/* Search input (title only) */}
-				<div className="flex justify-between items-center gap-2 bg-zinc-100 focus-within:bg-white hover:bg-white border-4 border-transparent focus-within:border-violet-200 hover:border-violet-200 pl-6 pr-4 py-2 mx-auto max-w-3xl rounded-full duration-200">
-					<input
-						type="text"
-						value={searchText}
-						onChange={handleSearchChange}
-						placeholder="What are you looking for?"
-						className="w-full focus:outline-none"
-					/>
-					<span className="bg-purple-500 p-2 rounded-full">
-						<Image src={SearchIcon} alt="Search icon" />
-					</span>
+				<div className="flex flex-col lg:flex-row items-center justify-between gap-5 w-full px-5 md:px-20">
+					<Header />
+					<div className="flex justify-between items-center gap-2 bg-zinc-100 focus-within:bg-white hover:bg-white border-2 border-transparent focus-within:border-zinc-100 hover:border-zinc-100 pl-6 pr-4 py-1.5 w-full lg:w-1/3 max-w-3xl h-full rounded-full duration-300">
+						<input
+							type="text"
+							value={searchText}
+							onChange={handleSearchChange}
+							placeholder="What are you looking for?"
+							className="w-full focus:outline-none text-sm"
+						/>
+						<span className="bg-black p-2 rounded-full">
+							<Image src={SearchIcon} alt="Search icon" />
+						</span>
+					</div>
 				</div>
 
 				{/* Tag filters */}
-				<Tags
+				{/* <Tags
 					tags={tags}
 					selectedTags={selectedTags}
 					onToggle={handleTagToggle}
-				/>
+				/> */}
 			</div>
 
 			{/* Blog cards */}
 			{filtered.length === 0 ? (
-				<EmptyState/>
+				<EmptyState />
 			) : (
 				<Blogs blogs={filtered} />
 			)}

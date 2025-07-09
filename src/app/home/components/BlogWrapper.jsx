@@ -5,8 +5,14 @@ import Link from 'next/link';
 /* External Library */
 import moment from 'moment/moment';
 
+/* Internal Library */
+import { getReadingTime } from '@/lib/common/helper/getReadingTime';
+
 /* Component Animations */
 import AnimatedInView from '@/lib/common/animations/AnimatedInView';
+
+/* Assets */
+import arrowUpRight from "../../../assets/icon/arrow-up-right.svg"
 
 function BlogWrapper({ blogs = [] }) {
 	if (!blogs.length) return null;
@@ -16,49 +22,65 @@ function BlogWrapper({ blogs = [] }) {
 		.slice(0, 3);
 
 	return (
-		<section className='space-y-10 px-5 max-w-7xl w-full mx-auto'>
-			<div className='space-y-2 max-w-full md:max-w-1/2'>
-				<p className='text-[2rem] font-semibold'>Latest Insights</p>
-				<p className='text-zinc-500'>
-					Stay ahead of the curve with our freshest takes on design, tech, and creative strategies. These are our latest stories—handpicked to spark ideas and ignite action.
-				</p>
+		<section id="blogs" className='space-y-10 px-5 max-w-7xl w-full mx-auto'>
+			<div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-5'>
+				<div className='space-y-2 max-w-full md:max-w-1/2'>
+					<p className='text-[2rem] font-semibold'>Latest Insights</p>
+					<p className='text-zinc-500'>
+						Stay ahead of the curve with our freshest takes on design, tech, and creative strategies. These are our latest stories—handpicked to spark ideas and ignite action.
+					</p>
+				</div>
+				<Link href="/blog" className="group relative flex items-center gap-2 w-max">
+					<p className="relative z-10">
+						Explore Our Article
+						<span className="absolute left-0 -bottom-2 h-[2px] w-full origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-100" />
+					</p>
+					<Image
+						src={arrowUpRight}
+						width={16}
+						className="group-hover:rotate-45 duration-300"
+						alt="Arrow icon"
+					/>
+				</Link>
 			</div>
 			<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5'>
 				{latestBlogs.map((blog) => (
 					<AnimatedInView key={blog.sys.id}>
 						<Link
 							href={`/singleBlog/${blog.fields.slug}`}
-							className='flex flex-row md:flex-col gap-3 max-w-96 group duration-200'
+							key={blog.sys.id}
+							className='group flex flex-col gap-4 w-[400px]'
 						>
-							<Image
-								src={`https:${blog.fields.thumbnail.fields.file.url}`}
-								width={1920}
-								height={1080}
-								alt={blog.fields.title}
-								priority
-								className='w-[5rem] sm:w-full h-[5rem] md:h-[12rem] lg:h-[15rem] rounded-2xl'
-							/>
-							<div className='space-y-3'>
-								<div className='flex justify-between items-center'>
-									{blog.fields.tag.slice(0, 1).map((tag, i) => (
-										<p
-											key={i}
-											className='hidden md:block bg-zinc-100 text-zinc-700 text-[0.85rem] font-medium px-4 py-1 rounded-full capitalize'
-										>
-											{tag}
-										</p>
-									))}
-									<p className='text-[0.85rem] text-zinc-600'>
-										{moment(blog.sys.createdAt).format('MMMM D, YYYY')}
-									</p>
+							<div className="space-y-3">
+								<div className="relative">
+									<div className="opacity-0 group-hover:opacity-100 absolute top-10 group-hover:top-5 right-10 group-hover:right-5 bg-white p-3 rounded-full w-max duration-300">
+										<Image src={arrowUpRight} width={16} height={16} alt="arrow icon" />
+									</div>
+									<p className="opacity-0 group-hover:opacity-100 absolute bottom-10 group-hover:bottom-5 left-10 group-hover:left-5 bg-white text-xs capitalize px-3 py-2 rounded-2xl w-max duration-300">{blog.fields.author.fields.name}</p>
+									<Image src={"https:" + blog.fields.thumbnail.fields.file.url} width={1920} height={1080} className="w-[400px] h-[250px] rounded-2xl" alt="thumbnail" />
 								</div>
 								<div className='space-y-2'>
-									<p className='font-medium text-[0.95rem] group-hover:text-blue-500 duration-200 line-clamp-2'>
+									<p className='font-medium text-base md:text-[1.25rem]'>
 										{blog.fields.title}
 									</p>
-									<p className='hidden md:block text-zinc-600 line-clamp-2'>
-										{blog.fields.description.slice(0, 100)}…
+									<p className='text-sm text-zinc-500 line-clamp-2'>
+										{blog.fields.description}
 									</p>
+								</div>
+							</div>
+							<div className="space-y-3">
+								<div className='flex items-center gap-2 text-[0.85rem] text-zinc-600'>
+									<p>
+										{moment(blog.sys.createdAt).format('MMMM D, YYYY')}
+									</p>
+									<div className="bg-zinc-300 w-1 h-1 rounded-full"></div>
+									<p>{getReadingTime(blog.fields.content)}</p>
+								</div>
+								<div className="flex items-center justify-center gap-2 group-hover:gap-4 duration-300 w-max">
+									<p className="text-sm">Read more</p>
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+										<path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+									</svg>
 								</div>
 							</div>
 						</Link>

@@ -88,7 +88,7 @@ export default function FooterClient({ abouts }) {
             viewport={{ once: true, amount: 0.2 }}
         >
             {/* 🔥 Footer content */}
-            <div className="relative z-10 flex flex-col items-center gap-5 px-5 md:px-0 mt-72 mb-40">
+            <div className="relative z-10 flex flex-col items-center gap-5 px-5 md:px-0 mb-40">
                 <motion.nav
                     variants={containerVariant}
                     className="flex flex-col xs:flex-row items-center gap-5 sm:gap-10 font-medium whitespace-nowrap"

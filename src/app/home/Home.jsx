@@ -6,7 +6,6 @@ import FloatingBar from "@/component/ui/floating_bar/FloatingBar"
 
 /* Local Component */
 import Header from "./components/Header"
-import Marquee from "./components/Marquee"
 import Footer from "@/component/ui/footer/Footer"
 import BlogWrapper from "./components/BlogWrapper"
 import AboutWrapper from "./components/AboutWrapper"
@@ -39,13 +38,14 @@ async function Home() {
 					<StatsWrapper stats={stats} />
 					<ClientWrapper clients={clients} />
 				</div>
-				<Marquee />
 				<TestimonyWrapper testimonies={testimonies} />
 				<AboutWrapper abouts={abouts} />
 				<FaqWrapper faqs={faqs} />
 				<BlogWrapper blogs={blogs} />
 			</div>
-			<Footer />
+			<div className="pt-72">
+				<Footer />
+			</div>
 		</div>
 	)
 }

@@ -36,6 +36,9 @@ export async function getBlogPageData(slug) {
 				title: relatedBlog.fields.title,
 				updatedAt: relatedBlog.sys.updatedAt,
 				thumbnailUrl: `https:${relatedBlog.fields.thumbnail.fields.file.url}`,
+				authorName: relatedBlog.fields.author.fields.name,
+				tag: relatedBlog.fields.tagList,
+				content: relatedBlog.fields.content
 			};
 		});
 

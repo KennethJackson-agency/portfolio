@@ -1,13 +1,13 @@
 import "@/styles/globals.css";
 import "@/styles/style.css";
 import "@/styles/markdown.css";
-import { Instrument_Sans } from "next/font/google";
+import { Outfit } from "next/font/google";
 import FaviconAnimator from "@/lib/common/animations/FaviconAnimator";
 import PageTransitionWrapper from "@/lib/common/animations/PageTransitionWrapper";
 import Script from "next/script";
 import AnalyticsProvider from "@/lib/global/analytic/AnalyticProvider";
 
-const instrumentSans = Instrument_Sans({
+const outfit = Outfit({
     subsets: ["latin"],
     variable: "--font-instrument",
     display: "swap",
@@ -24,7 +24,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" className={`${instrumentSans.variable} font-sans`}>
+        <html lang="en" className={`${outfit.variable} font-sans`}>
             <head>
                 <link rel="icon" href={metadata.icons.icon} />
                 <meta name="description" content={metadata.description} />

@@ -14,6 +14,7 @@ const navItems = [
     { label: "About", id: "about" },
     { label: "Work", id: "work" },
     { label: "Service", id: "service" },
+    { label: "Blogs", id: "blogs" },
     { label: "Contact", href: "/contact" },
 ];
 
@@ -70,7 +71,7 @@ function FloatingBar() {
                 className="block sm:hidden absolute top-6 left-6"
             />
             <nav
-                className="hidden fixed left-1/2 top-10 -translate-x-1/2 sm:flex items-center gap-6 font-medium text-sm text-white bg-zinc-900 rounded-2xl px-6 py-2.5 w-max drop-shadow-lg z-50 origin-center"
+                className="hidden fixed left-1/2 top-10 -translate-x-1/2 sm:flex items-center gap-6 font-medium text-sm bg-white rounded-2xl px-6 py-2.5 w-max drop-shadow-lg z-50 origin-center"
             >
                 <div className="relative flex gap-6">
                     {navItems.map(({ label, id, href }) => {
