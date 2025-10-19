@@ -1,8 +1,5 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
-import closeIcon from "../../../assets/icon/x.svg";
-import openIcon from "../../../assets/icon/bar-chart-2.svg";
 
 export default function Accordion({
     accordionContainerStyle,
@@ -37,13 +34,15 @@ export default function Accordion({
                 aria-expanded={isOpen}
             >
                 <span className={titleStyle}>{title}</span>
-                <Image
-                    src={isOpen ? closeIcon : openIcon}
-                    alt="accordion toggle icon"
-                    width={24}
-                    height={24}
-                    className="w-[24px] h-[24px]"
-                />
+                {isOpen ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
+                    </svg>
+                )}
             </button>
 
             <div

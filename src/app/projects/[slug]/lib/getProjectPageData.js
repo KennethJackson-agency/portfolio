@@ -7,21 +7,25 @@ export async function getProjectPageData(slug) {
 	// Prepare main project fields
 	const projectName = project.fields.projectName;
 	const projectDescription = project.fields.projectDescription;
-	const projectAsset = project.fields.projectAsset;
-	const projectScope = project.fields.projectScope || [];
-	const date = project.fields.date;
-	const gallery = project.fields.gallery;
-	const projectAssetUrl = `https:${projectAsset.fields.file.url}`;
+	const services = project.fields.services;
+	const previewAsset = project.fields.previewAsset
+	const gallery = project.fields.gallery
+	const projectChallenge = project.fields.projectChallenge
+	const projectStrategy = project.fields.projectStrategy
+	const projectStrategyAsset = project.fields.projectStrategyAsset
+	const projectExecution = project.fields.projectExecution
+	const projectExecutionAsset = project.fields.projectExecutionAsset
 
 	return {
-		projectData: {
-			projectName,
-			projectDescription,
-			projectScope,
-			projectAsset,
-			projectAssetUrl,
-			date,
-			gallery,
-		},
+		projectName,
+		projectDescription,
+		services,
+		previewAsset,
+		gallery,
+		projectChallenge,
+		projectStrategy,
+		projectStrategyAsset,
+		projectExecution,
+		projectExecutionAsset
 	};
 }

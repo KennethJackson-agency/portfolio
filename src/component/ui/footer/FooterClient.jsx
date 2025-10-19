@@ -19,9 +19,6 @@ import { trackEvent } from "@/lib/global/ga/gtagEvents";
 import AnimatedCharacterText from "@/lib/common/animations/AnimatedCharacterText";
 import AnimatedText from "@/lib/common/animations/AnimateText";
 
-/* Icon */
-import arrowRightIcon from "../../../assets/icon/arrow-right.svg"
-
 export default function FooterClient({ abouts }) {
     const navItems = [
         { label: "About", id: "about" },
@@ -108,13 +105,9 @@ export default function FooterClient({ abouts }) {
                             className="group flex items-center gap-2 text-zinc-900 hover:text-zinc-300 transition-colors cursor-pointer"
                         >
                             <span>{item.label}</span>
-                            <Image
-                                src={arrowRightIcon}
-                                alt={`${item.label} arrow`}
-                                width={20}
-                                height={20}
-                                className="group-hover:ml-2 duration-300 w-5 h-5"
-                            />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5 group-hover:ml-2 duration-300 w-5 h-5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
                         </motion.button>
                     ))}
                 </motion.nav>

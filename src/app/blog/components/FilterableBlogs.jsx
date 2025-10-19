@@ -1,14 +1,12 @@
 'use client';
 
+/* React JS */
 import { useState } from "react";
-import Tags from "./Tags";
+
+/* Component */
+import Header from "./Header";
 import Blogs from "./Blogs";
 import EmptyState from "./EmptyState";
-
-/* Assets */
-import SearchIcon from '../../../assets/icon/whiteSearch.svg'
-import Image from "next/image";
-import Header from "./Header";
 
 export default function FilterableBlogs({ blogs = [] }) {
 	const [selectedTags, setSelectedTags] = useState([]);
@@ -60,7 +58,9 @@ export default function FilterableBlogs({ blogs = [] }) {
 							className="w-full focus:outline-none text-sm"
 						/>
 						<span className="bg-black p-2 rounded-full">
-							<Image src={SearchIcon} alt="Search icon" />
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+								<path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+							</svg>
 						</span>
 					</div>
 				</div>

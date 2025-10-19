@@ -71,7 +71,7 @@ function FloatingBar() {
                 className="block sm:hidden absolute top-6 left-6"
             />
             <nav
-                className="hidden fixed left-1/2 top-10 -translate-x-1/2 sm:flex items-center gap-6 font-medium text-sm bg-white rounded-2xl px-6 py-2.5 w-max drop-shadow-lg z-50 origin-center"
+                className="hidden fixed left-1/2 top-10 -translate-x-1/2 sm:flex items-center gap-6 text-base bg-white rounded-2xl px-6 py-2.5 w-max drop-shadow-lg z-50 origin-center"
             >
                 <div className="relative flex gap-6">
                     {navItems.map(({ label, id, href }) => {
@@ -103,7 +103,7 @@ function FloatingBar() {
                                 {isActive && (
                                     <motion.div
                                         layoutId="nav-slider"
-                                        className="absolute inset-0 rounded-lg bg-blue-500 z-[-1]"
+                                        className="absolute inset-0 rounded-xl bg-blue-500 z-[-1]"
                                         transition={{
                                             type: "spring",
                                             stiffness: 500,

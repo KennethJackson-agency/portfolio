@@ -9,7 +9,6 @@ import TypingText from "@/lib/common/animations/TypingText";
 
 /* Icon */
 import logo from "../../../assets/icon/white-black-logo.svg";
-import sendIcon from "@/assets/icon/send.svg";
 
 export default async function AboutWrapper({ abouts }) {
     if (!abouts) return null;
@@ -139,14 +138,9 @@ export default async function AboutWrapper({ abouts }) {
                             <div className="flex items-center justify-between bg-zinc-800 px-2.5 md:px-3.5 py-2 rounded-2xl w-full">
                                 <TypingText />
                                 <div className="bg-zinc-600 rounded-full p-2">
-                                    <Image
-                                        src={sendIcon}
-                                        width={1920}
-                                        height={1080}
-                                        alt="logo"
-                                        className="w-[20px] h-[20px]"
-                                        priority
-                                    />
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>

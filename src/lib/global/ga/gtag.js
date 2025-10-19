@@ -7,6 +7,12 @@ export const pageview = (url) => {
 	});
 };
 
-export const event = ({ action, params }) => {
-	window.gtag('event', action, params);
+export const event = ({ action, event_category, event_label, value }) => {
+	if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+		window.gtag('event', action, {
+			event_category,
+			event_label,
+			value,
+		});
+	}
 };

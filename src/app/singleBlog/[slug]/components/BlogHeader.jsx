@@ -17,7 +17,7 @@ export default function BlogHeader({ titleText, authorName, authorRole, authorPr
 		try {
 			await navigator.clipboard.writeText(window.location.href);
 			setCopied(true);
-			setTimeout(() => setCopied(false), 2000); // reset tooltip after 2s
+			setTimeout(() => setCopied(false), 2000);
 		} catch (err) {
 			console.error("Failed to copy:", err);
 		}
