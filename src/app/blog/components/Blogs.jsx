@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 function Blogs({ blogs = [] }) {
     if (!blogs.length) return null;
-    console.log(blogs);
     return (
         <AnimatePresence mode="wait">
             <motion.div
@@ -42,7 +41,7 @@ function Blogs({ blogs = [] }) {
                         </div>
                         <div className="flex-1 flex flex-col gap-2">
                             <div className="flex gap-2">
-                                {blog.fields.tag.slice(0, 2).map((tag, i) => (
+                                {blog.fields.tag?.slice(0, 2).map((tag, i) => (
                                     <p
                                         key={i}
                                         className="text-zinc-500 text-xs capitalize px-3 py-1 bg-zinc-100 rounded-lg w-max"
