@@ -15,6 +15,7 @@ import BlogHeader from './components/BlogHeader.jsx'
 import BlogContent from './components/BlogContent.jsx';
 import RelatedBlogs from './components/RelatedBlogs.jsx';
 import { notFound } from 'next/navigation.js';
+import FloatingBar from '@/component/ui/floating_bar/FloatingBar.jsx';
 
 export const generateStaticParams = createSlugParams(fetchAllBlogs);
 
@@ -30,8 +31,9 @@ export default async function Blog({ params }) {
 	const { titleText, thumbnailUrl } = blogData;
 
 	return (
-		<div>
-			<div className="flex flex-col gap-10 pt-0 sm:pt-10">
+		<div className=''>
+			<FloatingBar />
+			<div className="flex flex-col gap-10 pt-0 sm:pt-32">
 				{/* Mobile Thumbnail */}
 				<Image
 					src={thumbnailUrl}
@@ -42,7 +44,7 @@ export default async function Blog({ params }) {
 					className="block sm:hidden absolute w-full h-[25rem] object-cover mx-auto -z-10"
 				/>
 
-				<div className="bg-white flex flex-col items-center space-y-0 md:space-y-20 mt-64 sm:mt-0 rounded-3xl pt-10 mx-auto">
+				<div className="relative bg-white flex flex-col items-center space-y-0 md:space-y-20 mt-64 sm:mt-0 rounded-3xl pt-10 mx-auto">
 					<div className='space-y-10'>
 						<BlogHeader
 							titleText={blogData.titleText}
