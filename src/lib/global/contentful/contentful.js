@@ -1,83 +1,63 @@
+import { CACHE_TIME } from "@/config/config";
 import { createClient } from "contentful";
 
-if (!process.env.CONTENTFUL_SPACE_ID || !process.env.CONTENTFUL_ACCESS_TOKEN) {
-    throw new Error(
-        "❌ Missing Contentful ENV variables. Please set CONTENTFUL_SPACE_ID and CONTENTFUL_ACCESS_TOKEN"
-    );
-}
+export const revalidate = CACHE_TIME;
 
-const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-});
-
-export async function getProjects() {
-    const res = await client.getEntries({ content_type: "project" });
-    return res.items;
-}
-
-export async function getAbouts() {
-    const res = await client.getEntries({ content_type: "about" });
-    return res.items;
-}
-
-export async function getFaqs() {
-    const res = await client.getEntries({ content_type: "faq" });
-    return res.items;
-}
-
-export async function getServices() {
-    const res = await client.getEntries({ content_type: "service" });
-    return res.items;
-}
-
-export async function getStats() {
-    const res = await client.getEntries({ content_type: "stats" });
-    return res.items;
-}
-
-export async function getClients() {
-    const res = await client.getEntries({ content_type: "client" });
-    return res.items;
-}
-
-export async function fetchAllProjects() {
-    const response = await client.getEntries({ content_type: "project" });
-    return response.items;
-}
-
-export async function getTestimonies() {
-    const response = await client.getEntries({ content_type: "testimony" });
-    return response.items;
-}
-
-export async function fetchProjectBySlug(slug) {
-    if (!slug || typeof slug !== "string") {
-        throw new Error("Invalid slug parameter");
+function checkEnv() {
+    if (
+        !process.env.CONTENTFUL_SPACE_ID ||
+        !process.env.CONTENTFUL_ACCESS_TOKEN
+    ) {
+        throw new Error(
+            "Missing Contentful ENV variables. Please set CONTENTFUL_SPACE_ID and CONTENTFUL_ACCESS_TOKEN."
+        );
     }
+}
 
-    const response = await client.getEntries({
-        content_type: "project",
-        "fields.slug": slug,
+const getClient = () => {
+    checkEnv();
+    return createClient({
+        space: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
     });
+};
 
-    return response.items[0] || null;
-}
+export async function fetchEntries({ contentType, slug, limit, order }) {
+    try {
+        const client = getClient()
+        const query = {
+            content_type: contentType,
+            limit: limit || 1000,
+            order: order || "-sys.createdAt",
+        };
 
-export async function fetchAllBlogs() {
-    const response = await client.getEntries({ content_type: "blog" });
-    return response.items;
-}
+        if (slug) query["fields.slug"] = slug;
 
-export async function fetchBlogBySlug(slug) {
-    if (!slug || typeof slug !== "string") {
-        throw new Error("Invalid slug parameter");
+        const res = await client.getEntries(query);
+        return res.items;
+    } catch (error) {
+        console.error("Contentful fetch error:", error);
+        return [];
     }
-
-    const response = await client.getEntries({
-        content_type: "blog",
-        "fields.slug": slug,
-    });
-
-    return response.items[0] || null;
 }
+
+export const contentfulApi = {
+    getProjects: () => fetchEntries({ contentType: "project" }),
+    getAbouts: () => fetchEntries({ contentType: "about" }),
+    getFaqs: () => fetchEntries({ contentType: "faq" }),
+    getServices: () => fetchEntries({ contentType: "service" }),
+    getStats: () => fetchEntries({ contentType: "stats" }),
+    getClients: () => fetchEntries({ contentType: "client" }),
+    getTestimonies: () => fetchEntries({ contentType: "testimony" }),
+    getBlogs: () => fetchEntries({ contentType: "blog" }),
+
+    getProjectBySlug: (slug) =>
+        fetchEntries({ contentType: "project", slug }).then(
+            (items) => items[0] || null
+        ),
+
+    getBlogBySlug: (slug) =>
+        fetchEntries({ contentType: "blog", slug }).then(
+            (items) => items[0] || null
+        ),
+};

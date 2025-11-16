@@ -1,9 +1,7 @@
 import "@/styles/globals.css";
 import "@/styles/style.css";
-import "@/styles/markdown.css";
 import { Outfit } from "next/font/google";
 import FaviconAnimator from "@/lib/common/animations/FaviconAnimator";
-import PageTransitionWrapper from "@/lib/common/animations/PageTransitionWrapper";
 import Script from "next/script";
 import AnalyticsProvider from "@/lib/global/analytic/AnalyticProvider";
 import { GA_MEASUREMENT_ID } from "@/lib/global/ga/gtag";
@@ -51,7 +49,7 @@ export default function RootLayout({ children }) {
             <body style={{ fontFamily: "var(--font-instrument)" }}>
                 <AnalyticsProvider />
                 <FaviconAnimator />
-                <PageTransitionWrapper>{children}</PageTransitionWrapper>
+                {children}
             </body>
         </html>
     );

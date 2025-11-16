@@ -1,53 +1,67 @@
-/* External Library */
-import { fetchAllBlogs, getAbouts, getClients, getFaqs, getProjects, getServices, getStats, getTestimonies } from "@/lib/global/contentful/contentful"
+/* Internal Library */
+import { contentfulApi } from "@/lib/global/contentful/contentful";
 
-/* Global Components */
-import FloatingBar from "@/component/ui/floating_bar/FloatingBar"
+/* Global UI Components */
+import FloatingBar from "@/lib/component/ui/floating_bar/FloatingBar";
+import Footer from "@/lib/component/ui/footer/Footer";
 
-/* Local Component */
-import Header from "./components/Header"
-import Footer from "@/component/ui/footer/Footer"
-import BlogWrapper from "./components/BlogWrapper"
-import AboutWrapper from "./components/AboutWrapper"
-import ClientWrapper from "./components/ClientWrapper"
-import FaqWrapper from "./components/FaqWrapper"
-import ProjectWrapper from "./components/ProjectsWrapper"
-import ServiceWrapper from "./components/ServiceWrapper"
-import StatsWrapper from "./components/StatsWrapper"
-import TestimonyWrapper from "./components/TestimonyWrapper"
+/* Page Specific Wrappers */
+import HeaderWrapper from "./components/header/HeaderWrapper";
+import BlogWrapper from "./components/blog/BlogWrapper";
+import AboutWrapper from "./components/about/AboutWrapper";
+import ClientWrapper from "./components/client/ClientWrapper";
+import FaqWrapper from "./components/faq/FaqWrapper";
+import ProjectWrapper from "./components/project/ProjectsWrapper";
+import ServiceWrapper from "./components/service/ServiceWrapper";
+import StatsWrapper from "./components/stats/StatsWrapper";
+import TestimonyWrapper from "./components/testimony/TestimonyWrapper";
+
+/* Config Data */
+import { navItemsHome } from "@/config/config";
 
 async function Home() {
-	// Fetch data on server
-	const projects = (await getProjects()) || []
-	const services = (await getServices()) || []
-	const stats = (await getStats()) || []
-	const clients = (await getClients()) || [];
-	const faqs = (await getFaqs()) || [];
-	const testimonies = (await getTestimonies()) || []
-	const blogs = (await fetchAllBlogs()) || [];
-	const abouts = (await getAbouts());
+    // Fetch data on server
+    const [
+        projects,
+        services,
+        stats,
+        clients,
+        faqs,
+        testimonies,
+        blogs,
+        abouts,
+    ] = await Promise.all([
+        contentfulApi.getProjects(),
+        contentfulApi.getServices(),
+        contentfulApi.getStats(),
+        contentfulApi.getClients(),
+        contentfulApi.getFaqs(),
+        contentfulApi.getTestimonies(),
+        contentfulApi.getBlogs(),
+        contentfulApi.getAbouts(),
+    ]);
 
-	return (
-		<div>
-			<FloatingBar />
-			<div className="flex flex-col gap-32 lg:gap-56">
-				<Header />
-				<ProjectWrapper projects={projects} />
-				<ServiceWrapper services={services} />
-				<div>
-					<StatsWrapper stats={stats} />
-					<ClientWrapper clients={clients} />
-				</div>
-				<TestimonyWrapper testimonies={testimonies} />
-				<AboutWrapper abouts={abouts} />
-				<FaqWrapper faqs={faqs} />
-				<BlogWrapper blogs={blogs} />
-			</div>
-			<div className="pt-72">
-				<Footer />
-			</div>
-		</div>
-	)
+    return (
+        <div>
+            <FloatingBar navItems={navItemsHome} />
+            <div className="flex flex-col gap-32 lg:gap-56">
+                <HeaderWrapper />
+                <ProjectWrapper projects={projects} />
+                <ServiceWrapper services={services} />
+                <div>
+                    <StatsWrapper stats={stats} />
+                    <ClientWrapper clients={clients} />
+                </div>
+                <TestimonyWrapper testimonies={testimonies} />
+                <AboutWrapper abouts={abouts} />
+                <FaqWrapper faqs={faqs} />
+                <BlogWrapper blogs={blogs} />
+            </div>
+            <div className="pt-72">
+                <Footer />
+            </div>
+        </div>
+    );
 }
 
-export default Home
+export default Home;
