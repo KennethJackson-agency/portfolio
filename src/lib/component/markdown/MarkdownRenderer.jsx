@@ -46,6 +46,18 @@ const components = {
             }}
         />
     ),
+    a: ({ node, href, ...props }) => (
+        <a
+            href={href}
+            {...props}
+            style={{
+                color: "#1a0dab",
+                textDecoration: "underline",
+            }}
+            target="_blank"
+            rel="noopener noreferrer"
+        />
+    ),
     ul: ({ node, ...props }) => (
         <ul
             {...props}
