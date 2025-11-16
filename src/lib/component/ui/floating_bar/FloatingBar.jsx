@@ -98,7 +98,7 @@ function FloatingBar({ navItems }) {
                 width={32}
                 height={32}
                 priority
-                className="block sm:hidden absolute top-6 left-6"
+                className="block sm:hidden absolute top-6 left-6 z-10"
             />
             <nav
                 ref={desktopNavRef}

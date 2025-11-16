@@ -41,7 +41,7 @@ function ProjectGallery({ gallery }) {
                                     muted
                                     loop
                                     playsInline
-                                    className="aspect-[16/8] object-cover w-full rounded-xl"
+                                    className="aspect-16/8 object-cover w-full rounded-xl"
                                     aria-label={title}
                                     controls
                                 />

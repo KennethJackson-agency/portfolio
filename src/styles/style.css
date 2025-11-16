@@ -203,13 +203,3 @@
     clip-path: inset(80% 0 0 0);
   }
 }
-
-.contactBg {
-  background: url(../assets/image/grid.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* or 'contain' if you want it to fit */
-  background-position: center center;
-  width: 100%;
-  min-height: 100vh;
-}

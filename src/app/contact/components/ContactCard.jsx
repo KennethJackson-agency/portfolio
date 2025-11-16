@@ -20,7 +20,7 @@ export default function ContactCard({
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative inline-block w-[175px] h-[48px] overflow-hidden rounded-full group"
+                className="relative inline-block w-[175px] h-12 overflow-hidden rounded-full group shrink-0"
             >
                 <div
                     className={`absolute inset-0 ${bgColor} text-white text-sm font-medium flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-full whitespace-nowrap`}
@@ -31,7 +31,7 @@ export default function ContactCard({
                     className={`absolute inset-0 ${iconBg} flex items-center justify-center transition-transform duration-300 translate-y-full group-hover:translate-y-0`}
                 >
                     <Image
-                        src={`https:${iconSrc}`}
+                        src={iconSrc}
                         alt={label}
                         width={20}
                         height={20}

@@ -38,7 +38,7 @@ function BlogWrapper({ blogs = [] }) {
                 >
                     <p className="relative z-10">
                         Explore Our Article
-                        <span className="absolute left-0 -bottom-2 h-[2px] w-full origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-100" />
+                        <span className="absolute left-0 -bottom-2 h-0.5 w-full origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-100" />
                     </p>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@ function BlogWrapper({ blogs = [] }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                 {latestBlogs.map((blog, index) => (
                     <Fade key={blog.sys.id} delay={index * 0.2}>
-                        <BlogCard blog={blog} />
+                        <BlogCard blog={blog} /> 
                     </Fade>
                 ))}
             </div>
