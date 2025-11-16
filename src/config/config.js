@@ -1,3 +1,37 @@
+export const metadata = {
+    title: "KJ Agency",
+    description:
+        "We're the powerhouse behind your digital presence 🚀, specializing in seamless IT integration 💻, vibrant video production 🎬, irresistible copy ✍️, and impactful digital marketing 📈. Propel your brand forward.✨",
+    icons: {
+        icon: "/logo.png",
+    },
+    keywords:
+        "digital marketing, IT integration, video production, copywriting, brand growth",
+    openGraph: {
+        type: "website",
+        url: "https://kjagency.id",
+        title: "KJ Agency",
+        description:
+            "We're the powerhouse behind your digital presence 🚀 with top IT integration & digital marketing services.",
+        images: [
+            {
+                url: "/logo.png",
+                width: 800,
+                height: 600,
+                alt: "KJ Agency Logo",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        site: "@KJAgency",
+        title: "KJ Agency",
+        description:
+            "Explore expert IT integration, video production, and digital marketing with KJ Agency.",
+        image: "/logo.png",
+    },
+};
+
 export const CACHE_TIME = 60 * 5;
 
 export const COLORS_TOP = [

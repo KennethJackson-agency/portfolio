@@ -33,7 +33,7 @@ function BlogWrapper({ blogs = [] }) {
                     />
                 </div>
                 <Link
-                    href="/blog"
+                    href="/blogs"
                     className="group relative flex items-center gap-2 w-max"
                 >
                     <p className="relative z-10">

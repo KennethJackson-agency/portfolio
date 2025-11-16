@@ -5,21 +5,13 @@ import FaviconAnimator from "@/lib/common/animations/FaviconAnimator";
 import Script from "next/script";
 import AnalyticsProvider from "@/lib/global/analytic/AnalyticProvider";
 import { GA_MEASUREMENT_ID } from "@/lib/global/ga/gtag";
+import { metadata } from "@/config/config";
 
 const outfit = Outfit({
     subsets: ["latin"],
     variable: "--font-instrument",
     display: "swap",
 });
-
-export const metadata = {
-    title: "KJ Agency",
-    description:
-        "We're the powerhouse behind your digital presence 🚀, specializing in seamless IT integration 💻, vibrant video production 🎬, irresistible copy ✍️, and impactful digital marketing 📈. Propel your brand forward.✨",
-    icons: {
-        icon: "/logo.png",
-    },
-};
 
 export default function RootLayout({ children }) {
     return (
