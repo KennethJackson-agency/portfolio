@@ -9,6 +9,12 @@ import FloatingBar from "@/lib/component/ui/floating_bar/FloatingBar";
 import { navItemsContact } from "@/config/config";
 import WaveText from "@/lib/component/animation/WaveText";
 import Fade from "@/lib/component/animation/Fade";
+import { generateContactMetadata } from "@/lib/seo/seo";
+
+export async function generateMetadata() {
+    const metadata = generateContactMetadata();
+    return metadata;
+}
 
 async function Contact() {
     const contacts = (await contentfulApi.getAbouts()) || [];

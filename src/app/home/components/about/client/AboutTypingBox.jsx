@@ -18,12 +18,12 @@ export default function AboutTypingBox() {
                 width={1920}
                 height={1080}
                 alt="logo"
-                className="w-[32px] md:w-[40px] h-[32px] md:h-[40px] rounded-full"
+                className="w-8 md:w-10 h-8 md:h-10 rounded-full"
             />
 
-            <div className="flex items-center justify-between bg-zinc-800 px-2.5 md:px-3.5 py-2 rounded-2xl w-full">
+            <div className="flex items-center justify-between bg-zinc-900 px-2.5 md:px-3.5 py-2 rounded-2xl w-full">
                 <TypingText />
-                <div className="bg-zinc-600 rounded-full p-2">
+                <div className="bg-zinc-800 rounded-full p-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

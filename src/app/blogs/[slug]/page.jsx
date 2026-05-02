@@ -22,6 +22,7 @@ import FloatingBar from "@/lib/component/ui/floating_bar/FloatingBar.jsx";
 
 /* Configuration Data */
 import { navItemsSingleBlogs } from "@/config/config.js";
+import MobileParallaxHero from "./components/MobileParallaxHero.jsx";
 
 export const generateStaticParams = createSlugParams(contentfulApi.getBlogs);
 
@@ -33,25 +34,28 @@ export default async function Blog({ params }) {
 
     const data = await getBlogPageData(slug);
     const { blogData, relatedBlogs } = data;
-
     const { titleText, thumbnailUrl } = blogData;
 
     return (
         <>
             <FloatingBar navItems={navItemsSingleBlogs} />
-            <div className="overflow-visible">
-                <div className="flex flex-col gap-10 pt-0 sm:pt-32">
-                    {/* Mobile Thumbnail */}
+
+            <div className="overflow-x-hidden bg-white">
+                <MobileParallaxHero src={thumbnailUrl} alt={titleText} />
+
+                <div className="hidden sm:block pt-32">
                     <Image
                         src={thumbnailUrl}
                         width={1920}
                         height={1080}
                         alt={titleText}
                         priority
-                        className="block sm:hidden absolute w-full h-[25rem] object-cover mx-auto -z-10"
+                        className="aspect-video w-full max-w-280 mx-auto rounded-2xl object-cover"
                     />
+                </div>
 
-                    <div className="bg-white flex flex-col items-center space-y-0 md:space-y-20 mt-64 sm:mt-0 rounded-3xl pt-10 mx-auto overflow-visible">
+                <div className="flex flex-col gap-10 pt-0 sm:pt-10">
+                    <div className="relative bg-white flex flex-col items-center space-y-0 md:space-y-20 pt-8 mx-auto max-w-280 -mt-6 sm:mt-0 rounded-t-3xl sm:rounded-3xl shadow-sm">
                         <div className="space-y-10">
                             <BlogHeader
                                 tagList={blogData.tagList}
@@ -59,18 +63,16 @@ export default async function Blog({ params }) {
                                 contentText={blogData.contentText}
                             />
 
-                            {/* Thumbnail – desktop */}
                             <Image
                                 src={thumbnailUrl}
                                 width={1920}
                                 height={1080}
                                 alt={titleText}
                                 priority
-                                className="hidden sm:block aspect-video w-full max-w-[70rem] mx-auto rounded-2xl object-cover"
+                                className="hidden sm:block aspect-video w-full max-w-280 mx-auto rounded-2xl object-cover"
                             />
                         </div>
 
-                        {/* Content */}
                         <BlogContent
                             authorName={blogData.authorName}
                             authorRole={blogData.authorRole}
@@ -84,11 +86,11 @@ export default async function Blog({ params }) {
                         />
                     </div>
 
-                    {/* Related Blogs */}
                     <RelatedBlogs relatedBlogs={relatedBlogs} />
-                </div>
-                <div className="mt-72">
-                    <Footer />
+
+                    <div className="mt-72">
+                        <Footer />
+                    </div>
                 </div>
             </div>
         </>

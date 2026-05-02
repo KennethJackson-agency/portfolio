@@ -7,39 +7,45 @@ export default function Accordion({
     title,
     children,
     defaultOpen = false,
+    isOpen: controlledIsOpen,
     onToggle,
 }) {
-    const [isOpen, setIsOpen] = useState(defaultOpen);
+    const isControlled = controlledIsOpen !== undefined;
+    const [internalIsOpen, setInternalIsOpen] = useState(defaultOpen);
+    const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
+
     const contentRef = useRef(null);
     const [height, setHeight] = useState("0px");
 
     useEffect(() => {
         if (isOpen) {
             setHeight(`${contentRef.current.scrollHeight}px`);
-
-            if (typeof onToggle === "function") {
-                onToggle();
-            }
         } else {
             setHeight("0px");
         }
     }, [isOpen]);
 
+    const handleToggle = () => {
+        if (!isControlled) setInternalIsOpen((prev) => !prev);
+        if (typeof onToggle === "function") onToggle();
+    };
+
     return (
         <div className={accordionContainerStyle}>
             <button
-                onClick={() => setIsOpen(!isOpen)}
-                className={`flex items-center justify-between w-full px-[10px] py-[15px] sm:p-[25px] cursor-pointer duration-500 ${isOpen ? "border-b border-zinc-600" : "border-none"
-                    }`}
+                onClick={handleToggle}
+                className={`flex items-center justify-between w-full px-[10px] py-[15px] sm:p-[25px] cursor-pointer duration-500 ${
+                    isOpen ? "border-b border-zinc-600" : "border-none"
+                }`}
                 aria-expanded={isOpen}
             >
                 <span className={titleStyle}>{title}</span>
                 {isOpen ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-6 shrink-0">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                     </svg>
                 ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-6 shrink-0">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
                     </svg>
                 )}

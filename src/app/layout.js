@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import "@/styles/style.css";
-import { Outfit } from "next/font/google";
+import { Outfit, JetBrains_Mono } from "next/font/google";
 import FaviconAnimator from "@/lib/common/animations/FaviconAnimator";
 import Script from "next/script";
 import AnalyticsProvider from "@/lib/global/analytic/AnalyticProvider";
@@ -13,13 +13,17 @@ const outfit = Outfit({
     display: "swap",
 });
 
+const jetbrains_mono = JetBrains_Mono({
+    subsets: ["latin"],
+    variable: "--font-jetbrains",
+    display: "swap",
+});
+
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" className={`${outfit.variable} font-sans`}>
+        <html lang="en" className={`${outfit.variable} ${jetbrains_mono.variable} font-sans`}>
             <head>
                 <link rel="icon" href={metadata.icons.icon} />
-                <meta name="description" content={metadata.description} />
-                <title>{metadata.title}</title>
                 {/* Google Analytics */}
                 <Script
                     strategy="afterInteractive"
@@ -38,7 +42,7 @@ export default function RootLayout({ children }) {
                     }}
                 />
             </head>
-            <body style={{ fontFamily: "var(--font-instrument)" }}>
+            <body style={{ fontFamily: "var(--font-instrument)" }} className="bg-stone-100">
                 <AnalyticsProvider />
                 <FaviconAnimator />
                 {children}

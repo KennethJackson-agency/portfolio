@@ -16,7 +16,7 @@ export default async function Page() {
     return (
         <>
             <FloatingBar navItems={navItemsBlogs} />
-            <div className="space-y-72 pt-20 -z-10 w-full 2xl:max-w-[90rem] mx-auto">
+            <div className="space-y-72 pt-20 -z-10 w-full 2xl:max-w-360 mx-auto">
                 <div className="z-10">
                     <FilterableBlogs blogs={blogs} />
                 </div>

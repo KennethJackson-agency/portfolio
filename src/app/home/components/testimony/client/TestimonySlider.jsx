@@ -9,7 +9,7 @@ import { useInView } from "react-intersection-observer";
 /* Animation Library */
 import gsap from "gsap";
 
-export default function TestimonySlider({ testimonies }) {
+export default function TestimonySlider({ testimonies = [] }) {
     if (!testimonies?.length) return null;
 
     const { ref, inView } = useInView({

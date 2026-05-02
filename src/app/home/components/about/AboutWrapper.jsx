@@ -20,7 +20,7 @@ export default function AboutWrapper({ abouts = [] }) {
                     key={i}
                     defaultOpen={true}
                     title="Who’s Behind the Magic?"
-                    accordionContainerStyle="bg-zinc-900 w-full sm:w-[650px] rounded-none sm:rounded-3xl drop-shadow-2xl"
+                    accordionContainerStyle="bg-primary w-full sm:w-[650px] rounded-none sm:rounded-3xl drop-shadow-2xl"
                     titleStyle="font-medium text-white text-lg sm:text-xl"
                 >
                     {/* ABOUT HEADER */}
@@ -32,7 +32,7 @@ export default function AboutWrapper({ abouts = [] }) {
                                     width={512}
                                     height={512}
                                     alt="logo"
-                                    className="w-[32px] sm:w-[40px] h-[32px] sm:h-[40px] rounded-full"
+                                    className="w-8 sm:w-10 h-8 sm:h-10 rounded-full"
                                 />
                                 <p className="font-medium text-base text-white">
                                     KJ Agency
@@ -40,7 +40,7 @@ export default function AboutWrapper({ abouts = [] }) {
                                 <p className="text-zinc-400">Dec, 12 2025</p>
                             </div>
 
-                            <div className="flex flex-col gap-5 text-white text-base pl-[44px] sm:pl-[52px] leading-7">
+                            <div className="flex flex-col gap-5 text-white text-base pl-11 sm:pl-[52px] leading-7">
                                 <p>
                                     We’re a small team with a big vision. Just
                                     three creatives ✨, united by passion,
@@ -81,7 +81,7 @@ export default function AboutWrapper({ abouts = [] }) {
                                                 width={512}
                                                 height={512}
                                                 alt={member.fields.name}
-                                                className="w-[32px] sm:w-[40px] h-[32px] sm:h-[40px] rounded-full"
+                                                className="w-8 sm:w-10 h-8 sm:h-10 rounded-full"
                                             />
                                             <p className="font-medium text-white text-base">
                                                 {member.fields.name}
@@ -108,7 +108,7 @@ export default function AboutWrapper({ abouts = [] }) {
                                         </span>
                                     </div>
 
-                                    <p className="text-white text-base pl-[44px] md:pl-[52px] leading-7">
+                                    <p className="text-white text-base pl-11 sm:pl-[52px] leading-7">
                                         {member.fields.memberDescription}
                                     </p>
                                 </div>

@@ -1,7 +1,35 @@
 @import "tailwindcss";
 
 @theme {
+    --color-primary: #0e0e0e;
     --breakpoint-xs: 25rem;
+    --font-mono: var(--font-jetbrains-mono), monospace;
+    --shadow-pills:
+        0px 4px 4px -4px rgba(24, 24, 27, 0.05),
+        0px 16px 16px -8px rgba(24, 24, 27, 0.1);
+    --animate-floating-slow: floating 4s ease-in-out infinite;
+    --animate-floating: floating 3s ease-in-out infinite;
+    --animate-floating-fast: floating 2s ease-in-out infinite;
+
+    @keyframes floating {
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+    --animate-marquee-vertical: marquee-vertical 8s linear infinite;
+
+    @keyframes marquee-vertical {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-50%);
+        }
+    }
 }
 
 html,
@@ -10,6 +38,6 @@ body {
 }
 
 .no-scroll {
-  overflow: hidden;
-  touch-action: none;
+    overflow: hidden;
+    touch-action: none;
 }

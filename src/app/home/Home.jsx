@@ -13,17 +13,22 @@ import ClientWrapper from "./components/client/ClientWrapper";
 import FaqWrapper from "./components/faq/FaqWrapper";
 import ProjectWrapper from "./components/project/ProjectsWrapper";
 import ServiceWrapper from "./components/service/ServiceWrapper";
+import ServiceGridSection from "./components/service/ServiceGridSection";
+import ProcessWrapper from "./components/process/ProcessWrapper";
 import StatsWrapper from "./components/stats/StatsWrapper";
 import TestimonyWrapper from "./components/testimony/TestimonyWrapper";
 
 /* Config Data */
 import { navItemsHome } from "@/config/config";
+import Marquee from "./components/marquee/Marquee";
 
 async function Home() {
     // Fetch data on server
     const [
         projects,
         services,
+        servicesGrid,
+        processes,
         stats,
         clients,
         faqs,
@@ -33,6 +38,8 @@ async function Home() {
     ] = await Promise.all([
         contentfulApi.getProjects(),
         contentfulApi.getServices(),
+        contentfulApi.getServicesGrid(),
+        contentfulApi.getProcesses(),
         contentfulApi.getStats(),
         contentfulApi.getClients(),
         contentfulApi.getFaqs(),
@@ -44,22 +51,18 @@ async function Home() {
     return (
         <div>
             <FloatingBar navItems={navItemsHome} />
-            <div className="flex flex-col gap-32 lg:gap-56">
+            <div className="flex flex-col gap-[150px] pt-[150px]">
                 <HeaderWrapper />
+                <Marquee />
                 <ProjectWrapper projects={projects} />
-                <ServiceWrapper services={services} />
-                <div>
-                    <StatsWrapper stats={stats} />
-                    <ClientWrapper clients={clients} />
-                </div>
+                <ServiceGridSection services={servicesGrid} />
+                <ProcessWrapper processes={processes} />
                 <TestimonyWrapper testimonies={testimonies} />
                 <AboutWrapper abouts={abouts} />
                 <FaqWrapper faqs={faqs} />
                 <BlogWrapper blogs={blogs} />
             </div>
-            <div className="pt-72">
-                <Footer />
-            </div>
+            <Footer />
         </div>
     );
 }

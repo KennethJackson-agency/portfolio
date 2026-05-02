@@ -70,12 +70,8 @@ export default function FilterableBlogs({ blogs = [] }) {
         }
         if (showPopup) {
             document.addEventListener("mousedown", handleClickOutside);
-            document.body.classList.add("no-scroll");
-        } else {
-            document.body.classList.add("no-scroll");
         }
         return () => {
-            document.body.classList.add("no-scroll");
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [showPopup]);

@@ -22,13 +22,14 @@ const getClient = () => {
     });
 };
 
-export async function fetchEntries({ contentType, slug, limit, order }) {
+export async function fetchEntries({ contentType, slug, limit, order, include }) {
     try {
-        const client = getClient()
+        const client = getClient();
         const query = {
             content_type: contentType,
             limit: limit || 1000,
             order: order || "-sys.createdAt",
+            include: include || 1,
         };
 
         if (slug) query["fields.slug"] = slug;
@@ -42,22 +43,42 @@ export async function fetchEntries({ contentType, slug, limit, order }) {
 }
 
 export const contentfulApi = {
-    getProjects: () => fetchEntries({ contentType: "project" }),
-    getAbouts: () => fetchEntries({ contentType: "about" }),
-    getFaqs: () => fetchEntries({ contentType: "faq" }),
-    getServices: () => fetchEntries({ contentType: "service" }),
-    getStats: () => fetchEntries({ contentType: "stats" }),
-    getClients: () => fetchEntries({ contentType: "client" }),
-    getTestimonies: () => fetchEntries({ contentType: "testimony" }),
-    getBlogs: () => fetchEntries({ contentType: "blog" }),
+    // About & Members
+    getAbouts: () => fetchEntries({ contentType: "about", include: 2 }),
+    getMembers: () => fetchEntries({ contentType: "member" }),
 
+    // Blog (include author & reference as linked entries)
+    getBlogs: () => fetchEntries({ contentType: "blog", include: 2 }),
+    getBlogBySlug: (slug) =>
+        fetchEntries({ contentType: "blog", slug, include: 2 }).then(
+            (items) => items[0] || null
+        ),
+    getAuthors: () => fetchEntries({ contentType: "author" }),
+    getReferences: () => fetchEntries({ contentType: "reference" }),
+
+    // Projects
+    getProjects: () => fetchEntries({ contentType: "project" }),
     getProjectBySlug: (slug) =>
         fetchEntries({ contentType: "project", slug }).then(
             (items) => items[0] || null
         ),
 
-    getBlogBySlug: (slug) =>
-        fetchEntries({ contentType: "blog", slug }).then(
-            (items) => items[0] || null
-        ),
+    // Services & FAQ
+    getServices: () => fetchEntries({ contentType: "service" }),
+    getServicesGrid: () => fetchEntries({ contentType: "service", order: "sys.createdAt" }),
+    getFaqs: () => fetchEntries({ contentType: "faq" }),
+
+    // Process Steps
+    getProcesses: () => fetchEntries({ contentType: "process", order: "sys.createdAt" }),
+
+    // Clients
+    getClients: () => fetchEntries({ contentType: "client" }),
+
+    // Testimonies
+    getTestimonies: () => fetchEntries({ contentType: "testimony" }),
+    getTestimonyLists: () => fetchEntries({ contentType: "testimonyList", include: 2 }),
+
+    // Stats & Social Media
+    getStats: () => fetchEntries({ contentType: "stats" }),
+    getSocialMedias: () => fetchEntries({ contentType: "socialMedia" }),
 };

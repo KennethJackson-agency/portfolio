@@ -2,140 +2,108 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import WaveText from "@/lib/component/animation/WaveText";
-import { trackEvent } from "@/lib/global/ga/gtagEvents";
-import { COLORS_TOP } from "@/config/config";
+const NAV_LINKS = [
+    { label: "About", href: "#about", scroll: true },
+    { label: "Work", href: "#work", scroll: true },
+    { label: "Contact", href: "/contact", scroll: false },
+    { label: "Blog", href: "/blogs", scroll: false },
+];
 
-gsap.registerPlugin(ScrollTrigger);
+const PLATFORM_ABBR = {
+    instagram: "IG",
+    tiktok: "TT",
+    youtube: "YT",
+    dribbble: "DR",
+    twitter: "TW",
+    x: "X",
+    facebook: "FB",
+    linkedin: "LI",
+    discord: "DC",
+    behance: "BE",
+};
 
-export default function FooterClient({ abouts }) {
-    const containerRef = useRef(null);
+const getAbbr = (name) =>
+    PLATFORM_ABBR[name?.toLowerCase()] ?? name?.slice(0, 2).toUpperCase() ?? "–";
 
-    const navItems = [
-        { label: "About", id: "about" },
-        { label: "Work", id: "work" },
-        { label: "Service", id: "service" },
-    ];
+const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+};
 
-    useEffect(() => {
-        if (!containerRef.current) return;
-
-        const tl = gsap.timeline({ repeat: -1, yoyo: true });
-
-        COLORS_TOP.forEach((color, index) => {
-            tl.to(
-                containerRef.current,
-                {
-                    backgroundImage: `radial-gradient(125% 125% at 50% 0%, #fff 50%, ${color})`,
-                    duration: 10 / COLORS_TOP.length,
-                    ease: "power1.inOut",
-                },
-                index * (10 / COLORS_TOP.length)
-            );
-        });
-
-        return () => {
-            tl.kill();
-        };
-    }, []);
-
-    const scrollToSection = (id) => {
-        const section = document.getElementById(id);
-        if (section) {
-            section.scrollIntoView({ behavior: "smooth" });
-        }
-    };
-
+export default function FooterClient({ socialMedias = [] }) {
     return (
-        <div
-            ref={containerRef}
-            className="relative overflow-hidden text-zinc-900"
-            style={{
-                backgroundImage: `radial-gradient(125% 125% at 50% 0%, #fff 50%, ${COLORS_TOP[0]})`,
-            }}
-        >
-            <div className="relative z-10 flex flex-col items-center gap-5 px-5 md:px-0 mb-40">
-                <nav className="flex flex-col xs:flex-row items-center gap-5 sm:gap-10 font-medium whitespace-nowrap">
-                    {navItems.map((item, i) => (
-                        <button
-                            key={i}
-                            onClick={() => {
-                                trackEvent({
-                                    action: `click_navigation_footer_${item.label}`,
-                                    category: "Footer",
-                                    label: item.label,
-                                });
-                                scrollToSection(item.id);
-                            }}
-                            className="group flex items-center gap-2 text-zinc-900 hover:text-zinc-300 transition-colors cursor-pointer"
-                        >
-                            <span>{item.label}</span>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="size-5 group-hover:ml-2 duration-300 w-5 h-5"
+        <footer>
+            {/* CTA Section */}
+            <div className="flex flex-col items-center justify-center py-24 md:py-32 px-5 text-center">
+                <h2 className="text-6xl md:text-8xl lg:text-[108px] font-bold leading-none tracking-tight text-primary">
+                    Still scrolling?
+                </h2>
+                <h2 className="text-6xl md:text-8xl lg:text-[108px] font-light italic leading-none tracking-tight text-zinc-400 mt-2">
+                    That&apos;s a sign.
+                </h2>
+                <p className="text-zinc-500 max-w-sm mt-8 text-sm md:text-base leading-relaxed">
+                    Forget cookie-cutter solutions. Each project is designed with
+                    purpose — original, intentional, and made to stand out in a
+                    noisy digital world.
+                </p>
+                <Link
+                    href="/contact"
+                    className="mt-10 bg-primary text-white text-sm font-medium px-8 py-3.5 rounded-full hover:opacity-80 transition-opacity"
+                >
+                    Start a project →
+                </Link>
+            </div>
+
+            {/* Footer Bar */}
+            <div className="border-t border-zinc-200 flex flex-col md:flex-row items-center justify-between gap-4 px-5 md:px-10 py-5">
+                {/* Copyright */}
+                <span className="font-mono text-xs text-zinc-400 tracking-wide">
+                    © {new Date().getFullYear()} KJ AGENCY · JAKARTA
+                </span>
+
+                {/* Nav Links */}
+                <nav className="flex items-center gap-6">
+                    {NAV_LINKS.map((item) =>
+                        item.scroll ? (
+                            <button
+                                key={item.label}
+                                onClick={() => scrollTo(item.href.replace("#", ""))}
+                                className="text-sm text-zinc-500 hover:text-primary transition-colors cursor-pointer"
                             >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                                />
-                            </svg>
-                        </button>
-                    ))}
+                                {item.label}
+                            </button>
+                        ) : (
+                            <Link
+                                key={item.label}
+                                href={item.href}
+                                className="text-sm text-zinc-500 hover:text-primary transition-colors"
+                            >
+                                {item.label}
+                            </Link>
+                        )
+                    )}
                 </nav>
 
-                <WaveText
-                    className="text-zinc-900 text-xl font-semibold text-center"
-                    text="Still scrolling? That’s a sign."
-                />
-                <WaveText
-                    text="Forget cookie-cutter solutions. Each project is designed with purpose—original, intentional, and made to stand out in a noisy digital world."
-                    className="text-zinc-500 w-[315px] sm:w-[400px] text-center"
-                />
-                <div className="flex items-center gap-6 mt-10">
-                    {abouts?.flatMap((about) =>
-                        about.fields.socialMedia.map((socmed, j) => (
-                            <div
-                                key={`${about.sys.id}-${j}`}
-                                onClick={() => {
-                                    trackEvent({
-                                        action: `click_social_media_footer_${socmed.fields.name}`,
-                                        category: "Footer",
-                                        label: socmed.fields.name,
-                                    });
-                                    scrollToSection(socmed.fields.name);
-                                }}
-                            >
-                                <Link
-                                    href={socmed.fields.link}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="hover:opacity-80 transition-opacity"
-                                >
-                                    <Image
-                                        src={`https:${socmed.fields.bwIcon.fields.file.url}`}
-                                        alt={
-                                            socmed.fields.name ||
-                                            "social media icon"
-                                        }
-                                        width={24}
-                                        height={24}
-                                        className="w-[24px] h-[24px]"
-                                    />
-                                </Link>
-                            </div>
-                        ))
-                    )}
+                {/* Social Media Circles */}
+                <div className="flex items-center gap-2">
+                    {socialMedias.map((socmed) => (
+                        <Link
+                            key={socmed.sys.id}
+                            href={socmed.fields.link}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            className="w-9 h-9 flex items-center justify-center transition-all duration-200"
+                        >
+                            <Image
+                                src={"https:" + socmed.fields.fullColorIcon.fields.file.url}
+                                alt={socmed.fields.name}
+                                width={20}
+                                height={20}
+                            />
+                        </Link>
+                    ))}
                 </div>
             </div>
-        </div>
+        </footer>
     );
 }
