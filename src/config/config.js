@@ -75,3 +75,10 @@ export const navItemsSingleBlogs = [
     { label: "Blogs", href: "/blogs" },
     { label: "Contact", href: "/contact" },
 ];
+
+export const navItemsProjects = [
+    { label: "Home", href: "/" },
+    { label: "Work", href: "/projects" },
+    { label: "Blogs", href: "/blogs" },
+    { label: "Contact", href: "/contact" },
+];
