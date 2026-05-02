@@ -54,7 +54,7 @@ export default function FilterableProjects({ projects = [] }) {
     }, [filtered]);
 
     return (
-        <div className="px-5 md:px-16 lg:px-24 pt-24 pb-20 space-y-14">
+        <div className="px-5 md:px-10 pt-24 pb-20 space-y-14">
             {/* Page Header */}
             <div className="space-y-6">
                 {/* Meta line */}
